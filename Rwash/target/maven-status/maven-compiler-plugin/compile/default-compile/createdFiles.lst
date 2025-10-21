@@ -1,4 +1,11 @@
+com\mycompany\rwash\views\TelaCliente$1.class
+com\mycompany\rwash\views\TelaCliente.class
+com\mycompany\rwash\Model\Usuario.class
 com\mycompany\rwash\Rwash.class
-com\mycompany\rwash\views\TelaPrincipal$2.class
-com\mycompany\rwash\views\TelaPrincipal.class
 com\mycompany\rwash\views\TelaPrincipal$1.class
+com\mycompany\rwash\DAO\UsuárioDAO.class
+com\mycompany\rwash\views\TelaPrincipal$2.class
+com\mycompany\rwash\views\TelaCliente$3.class
+com\mycompany\rwash\views\TelaPrincipal$3.class
+com\mycompany\rwash\views\TelaPrincipal.class
+com\mycompany\rwash\views\TelaCliente$2.class
