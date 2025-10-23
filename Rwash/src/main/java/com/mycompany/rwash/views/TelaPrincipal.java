@@ -9,7 +9,8 @@ package com.mycompany.rwash.views;
  * @author aluno
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+ 
+      Usuario object = null; 
     /**
      * Creates new form TelaPrincipal
      */

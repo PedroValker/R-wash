@@ -4,15 +4,20 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.Model.Usuario;
+import com.mycompany.rwash.DAO.UsuarioDAO;
 import java.awt.BorderLayout;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 /**
  *
  * @author aluno
  */
-public class TelaLogin extends javax.swing.JFrame {
-
+ public class TelaLogin extends javax.swing.JFrame {
+   
+    Usuario objAlterar = null; 
+   
     /**
      * Creates new form TelaLogin
      */
@@ -37,10 +42,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txtNomeCliente = new javax.swing.JTextField();
+        lblNomeCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtEmailCliente = new javax.swing.JTextField();
+        lblEmailCliente = new javax.swing.JTextField();
         txtSenhaCliente = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -74,10 +79,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        txtNomeCliente.setBackground(new java.awt.Color(232, 232, 232));
-        txtNomeCliente.addActionListener(new java.awt.event.ActionListener() {
+        lblNomeCliente.setBackground(new java.awt.Color(232, 232, 232));
+        lblNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNomeClienteActionPerformed(evt);
+                lblNomeClienteActionPerformed(evt);
             }
         });
 
@@ -87,10 +92,10 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Email:");
 
-        txtEmailCliente.setBackground(new java.awt.Color(229, 229, 229));
-        txtEmailCliente.addActionListener(new java.awt.event.ActionListener() {
+        lblEmailCliente.setBackground(new java.awt.Color(229, 229, 229));
+        lblEmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailClienteActionPerformed(evt);
+                lblEmailClienteActionPerformed(evt);
             }
         });
 
@@ -137,11 +142,11 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addGap(11, 11, 11)
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel3)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel4)
@@ -161,11 +166,11 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -180,7 +185,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(29, 29, 29))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmailCliente, txtNomeCliente});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblEmailCliente, lblNomeCliente});
 
         jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
 
@@ -192,20 +197,44 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        // TODO add your handling code here:
+      
+    if (objAlterar != null) {
+        // Modo de alteração
+        String nome = lblNomeCliente.getText();
+        String email = lblEmailCliente.getText();
+
+        objAlterar.setNomeCliente(nome);
+        objAlterar.setEmailCliente(email);
+    } else {
+        // Modo de cadastro
+        String nome = lblNomeCliente.getText();
+        String email = lblEmailCliente.getText();
+        String senha = lblSenhaCliente.getInt();
+
+        Usuario objCadastrar = new Usuario(nome, email, senha);
+
+        boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
+        if (retornoBanco) {
+            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
+        }
+    }
+  //passar o objeto para o banco de dados
+// TODO add your handling code here:
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtSenhaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaClienteActionPerformed
 
-    private void txtEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailClienteActionPerformed
+    private void lblEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEmailClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailClienteActionPerformed
+    }//GEN-LAST:event_lblEmailClienteActionPerformed
 
-    private void txtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeClienteActionPerformed
+    private void lblNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblNomeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNomeClienteActionPerformed
+    }//GEN-LAST:event_lblNomeClienteActionPerformed
 
     private void btnMudarTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastrarActionPerformed
         // TODO add your handling code here:
@@ -258,8 +287,8 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField txtEmailCliente;
-    private javax.swing.JTextField txtNomeCliente;
+    private javax.swing.JTextField lblEmailCliente;
+    private javax.swing.JTextField lblNomeCliente;
     private javax.swing.JPasswordField txtSenhaCliente;
     // End of variables declaration//GEN-END:variables
 }

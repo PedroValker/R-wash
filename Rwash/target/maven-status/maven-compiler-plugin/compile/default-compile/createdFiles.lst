@@ -1,14 +1,3 @@
 com\mycompany\rwash\Model\Usuario.class
-com\mycompany\rwash\views\TelaLogin$4.class
-com\mycompany\rwash\views\TelaLogin$6.class
-com\mycompany\rwash\views\TelaLogin$3.class
 com\mycompany\rwash\Rwash.class
-com\mycompany\rwash\views\TelaPrincipal$1.class
-com\mycompany\rwash\DAO\UsuárioDAO.class
-com\mycompany\rwash\views\TelaLogin$2.class
-com\mycompany\rwash\views\TelaLogin$1.class
-com\mycompany\rwash\views\TelaPrincipal$2.class
-com\mycompany\rwash\views\TelaPrincipal$3.class
-com\mycompany\rwash\views\TelaLogin.class
-com\mycompany\rwash\views\TelaPrincipal.class
-com\mycompany\rwash\views\TelaLogin$5.class
+com\mycompany\rwash\DAO\UsuarioDAO.class
