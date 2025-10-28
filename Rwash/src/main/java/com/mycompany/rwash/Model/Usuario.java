@@ -16,6 +16,12 @@ public class Usuario {
     private int senhaCliente;
     public Object getIdCliente;
 
+    public Usuario(String nomeCliente, String emailCliente, int senhaCliente) {
+        this.nomeCliente = nomeCliente;
+        this.emailCliente = emailCliente;
+        this.senhaCliente = senhaCliente;
+    }
+
 
     public Usuario(int idCliente, String nomeCliente, String emailCliente, int cpfCliente, int senhaCliente) {
         this.idCliente = idCliente;
