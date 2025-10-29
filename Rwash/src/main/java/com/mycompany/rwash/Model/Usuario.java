@@ -13,17 +13,17 @@ public class Usuario {
     private String nomeCliente;
     private String emailCliente;
     private int cpfCliente;
-    private int senhaCliente;
+    private String senhaCliente;
     public Object getIdCliente;
 
-    public Usuario(String nomeCliente, String emailCliente, int senhaCliente) {
+    public Usuario(String nomeCliente, String emailCliente, String senhaCliente) {
         this.nomeCliente = nomeCliente;
         this.emailCliente = emailCliente;
         this.senhaCliente = senhaCliente;
     }
 
 
-    public Usuario(int idCliente, String nomeCliente, String emailCliente, int cpfCliente, int senhaCliente) {
+    public Usuario(int idCliente, String nomeCliente, String emailCliente, int cpfCliente, String senhaCliente) {
         this.idCliente = idCliente;
         this.nomeCliente = nomeCliente;
         this.emailCliente = emailCliente;
@@ -31,7 +31,7 @@ public class Usuario {
         this.senhaCliente = senhaCliente;
     }
 
-    public Usuario(String nomeCliente, String emailCliente, int cpfCliente, int senhaCliente) {
+    public Usuario(String nomeCliente, String emailCliente, int cpfCliente, String senhaCliente) {
         this.nomeCliente = nomeCliente;
         this.emailCliente = emailCliente;
         this.cpfCliente = cpfCliente;
@@ -59,7 +59,7 @@ public class Usuario {
         return cpfCliente;
     }
 
-      public int getsenhaCliente() {
+      public String getsenhaCliente() {
         return senhaCliente;
     }
 
@@ -80,12 +80,19 @@ public class Usuario {
         this.cpfCliente = cpfCliente;
     }
 
-     public void setsenhaCliente(int senhaCliente) {
+     public void setsenhaCliente(String senhaCliente) {
         this.senhaCliente = senhaCliente;
     }
      
     public String getcpfCliente() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    public Usuario(String emailCliente, String senhaCliente) {
+        this.emailCliente = emailCliente;
+        this.senhaCliente = senhaCliente;
+    }
+    
+    
     
 }

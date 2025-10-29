@@ -4,6 +4,8 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.Model.Usuario;
+
 /**
  *
  * @author aluno

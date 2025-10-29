@@ -4,12 +4,16 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.DAO.UsuarioDAO;
+import com.mycompany.rwash.Model.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
  */
 public class TelaCadastro extends javax.swing.JFrame {
-
+Usuario objAlterar = null;
     /**
      * Creates new form TelaCadastro
      */
@@ -31,15 +35,15 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        lblNomeCliente = new javax.swing.JTextField();
+        txtNomeCliente = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblEmailCliente = new javax.swing.JTextField();
+        txtEmailCliente = new javax.swing.JTextField();
         txtSenhaCliente = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        btnLogin = new javax.swing.JButton();
+        btnCadastro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnMudarTelaCadastrar = new javax.swing.JButton();
+        btnMudarParaTelaLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,10 +84,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 300));
 
-        lblNomeCliente.setBackground(new java.awt.Color(232, 232, 232));
-        lblNomeCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtNomeCliente.setBackground(new java.awt.Color(232, 232, 232));
+        txtNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblNomeClienteActionPerformed(evt);
+                txtNomeClienteActionPerformed(evt);
             }
         });
 
@@ -93,10 +97,10 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Email:");
 
-        lblEmailCliente.setBackground(new java.awt.Color(229, 229, 229));
-        lblEmailCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtEmailCliente.setBackground(new java.awt.Color(229, 229, 229));
+        txtEmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblEmailClienteActionPerformed(evt);
+                txtEmailClienteActionPerformed(evt);
             }
         });
 
@@ -110,25 +114,25 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Senha:");
 
-        btnLogin.setBackground(new java.awt.Color(153, 49, 255));
-        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin.setText("CADASTRO");
-        btnLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastro.setBackground(new java.awt.Color(153, 49, 255));
+        btnCadastro.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastro.setText("CADASTRO");
+        btnCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnCadastroActionPerformed(evt);
             }
         });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel5.setText("Nome:");
 
-        btnMudarTelaCadastrar.setForeground(new java.awt.Color(153, 50, 255));
-        btnMudarTelaCadastrar.setText("Login");
-        btnMudarTelaCadastrar.setBorder(null);
-        btnMudarTelaCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        btnMudarParaTelaLogin.setForeground(new java.awt.Color(153, 50, 255));
+        btnMudarParaTelaLogin.setText("Login");
+        btnMudarParaTelaLogin.setBorder(null);
+        btnMudarParaTelaLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMudarTelaCadastrarActionPerformed(evt);
+                btnMudarParaTelaLoginActionPerformed(evt);
             }
         });
 
@@ -147,8 +151,8 @@ public class TelaCadastro extends javax.swing.JFrame {
                                     .addComponent(jLabel5))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,27 +160,27 @@ public class TelaCadastro extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCadastro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(19, 19, 19)
                                 .addComponent(jLabel2)
                                 .addGap(3, 3, 3)
-                                .addComponent(btnMudarTelaCadastrar)))))
+                                .addComponent(btnMudarParaTelaLogin)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {lblEmailCliente, lblNomeCliente, txtSenhaCliente});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmailCliente, txtNomeCliente, txtSenhaCliente});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(20, 20, 20)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -185,13 +189,13 @@ public class TelaCadastro extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(btnMudarTelaCadastrar))
+                    .addComponent(btnMudarParaTelaLogin))
                 .addGap(3, 3, 3)
-                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblEmailCliente, lblNomeCliente, txtSenhaCliente});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmailCliente, txtNomeCliente, txtSenhaCliente});
 
         jPanel2.add(jPanel3, new java.awt.GridBagConstraints());
 
@@ -202,32 +206,32 @@ public class TelaCadastro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblNomeClienteActionPerformed
+    private void txtNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblNomeClienteActionPerformed
+    }//GEN-LAST:event_txtNomeClienteActionPerformed
 
-    private void lblEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEmailClienteActionPerformed
+    private void txtEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblEmailClienteActionPerformed
+    }//GEN-LAST:event_txtEmailClienteActionPerformed
 
     private void txtSenhaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaClienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaClienteActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
 
         if (objAlterar != null) {
             // Modo de alteração
-            String nome = lblNomeCliente.getText();
-            String email = lblEmailCliente.getText();
+            String nome = txtNomeCliente.getText();
+            String email = txtEmailCliente.getText();
 
             objAlterar.setNomeCliente(nome);
             objAlterar.setEmailCliente(email);
         } else {
             // Modo de cadastro
-            String nome = lblNomeCliente.getText();
-            String email = lblEmailCliente.getText();
-            String senha = txtSenhaCliente.getInt();
+            String nome = txtNomeCliente.getText();
+            String email = txtEmailCliente.getText();
+            String senha = txtSenhaCliente.getText();
 
             Usuario objCadastrar = new Usuario(nome, email, senha);
 
@@ -240,11 +244,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         }
         //passar o objeto para o banco de dados
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLoginActionPerformed
+    }//GEN-LAST:event_btnCadastroActionPerformed
 
-    private void btnMudarTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastrarActionPerformed
+    private void btnMudarParaTelaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarParaTelaLoginActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMudarTelaCadastrarActionPerformed
+    }//GEN-LAST:event_btnMudarParaTelaLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,8 +286,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnMudarTelaCadastrar;
+    private javax.swing.JButton btnCadastro;
+    private javax.swing.JButton btnMudarParaTelaLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -293,8 +297,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField lblEmailCliente;
-    private javax.swing.JTextField lblNomeCliente;
+    private javax.swing.JTextField txtEmailCliente;
+    private javax.swing.JTextField txtNomeCliente;
     private javax.swing.JPasswordField txtSenhaCliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,7 +44,7 @@ import javax.swing.SwingConstants;
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblEmailCliente = new javax.swing.JTextField();
+        txtEmailCliente = new javax.swing.JTextField();
         txtSenhaCliente = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         btnLogin = new javax.swing.JButton();
@@ -84,9 +84,9 @@ import javax.swing.SwingConstants;
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Email:");
 
-        lblEmailCliente.addActionListener(new java.awt.event.ActionListener() {
+        txtEmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lblEmailClienteActionPerformed(evt);
+                txtEmailClienteActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ import javax.swing.SwingConstants;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -158,7 +158,7 @@ import javax.swing.SwingConstants;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -175,7 +175,7 @@ import javax.swing.SwingConstants;
                 .addGap(12, 12, 12))
         );
 
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {lblEmailCliente, txtSenhaCliente});
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmailCliente, txtSenhaCliente});
 
         jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
 
@@ -190,18 +190,18 @@ import javax.swing.SwingConstants;
       
     if (objAlterar != null) {
         // Modo de alteração
-        String nome = lblNomeCliente.getText();
-        String email = lblEmailCliente.getText();
+        String senha = txtSenhaCliente.getText();
+        String email = txtEmailCliente.getText();
 
-        objAlterar.setNomeCliente(nome);
+        objAlterar.setNomeCliente(senha);
         objAlterar.setEmailCliente(email);
     } else {
         // Modo de cadastro
-        String nome = lblNomeCliente.getText();
-        String email = lblEmailCliente.getText();
-        String senha = txtSenhaCliente.getInt();
+        
+        String email = txtEmailCliente.getText();
+        String senha = txtSenhaCliente.getText();
 
-        Usuario objCadastrar = new Usuario(nome, email, senha);
+        Usuario objCadastrar = new Usuario(email, senha);
 
         boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
         if (retornoBanco) {
@@ -218,9 +218,9 @@ import javax.swing.SwingConstants;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSenhaClienteActionPerformed
 
-    private void lblEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblEmailClienteActionPerformed
+    private void txtEmailClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lblEmailClienteActionPerformed
+    }//GEN-LAST:event_txtEmailClienteActionPerformed
 
     private void btnMudarTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastrarActionPerformed
         // TODO add your handling code here:
@@ -277,7 +277,7 @@ import javax.swing.SwingConstants;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField lblEmailCliente;
+    private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JPasswordField txtSenhaCliente;
     // End of variables declaration//GEN-END:variables
 }
