@@ -30,7 +30,8 @@ public class PainelCliente extends javax.swing.JFrame {
         btnMudarTelaLogin = new javax.swing.JButton();
         btnMudarTelaCadastro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        btnMudarTelaCadastro1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -46,22 +47,22 @@ public class PainelCliente extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(23, 21, 56));
 
-        btnMudarTelaLogin.setBackground(new java.awt.Color(226, 226, 226));
+        btnMudarTelaLogin.setBackground(new java.awt.Color(23, 21, 56));
         btnMudarTelaLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnMudarTelaLogin.setForeground(new java.awt.Color(153, 50, 255));
         btnMudarTelaLogin.setText("Meu produto");
-        btnMudarTelaLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnMudarTelaLogin.setBorder(null);
         btnMudarTelaLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMudarTelaLoginActionPerformed(evt);
             }
         });
 
-        btnMudarTelaCadastro.setBackground(new java.awt.Color(226, 226, 226));
+        btnMudarTelaCadastro.setBackground(new java.awt.Color(23, 21, 56));
         btnMudarTelaCadastro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnMudarTelaCadastro.setForeground(new java.awt.Color(153, 50, 255));
         btnMudarTelaCadastro.setText("Relatório");
-        btnMudarTelaCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnMudarTelaCadastro.setBorder(null);
         btnMudarTelaCadastro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMudarTelaCadastroActionPerformed(evt);
@@ -72,16 +73,12 @@ public class PainelCliente extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("R-Wash");
 
-        btnMudarTelaCadastro1.setBackground(new java.awt.Color(226, 226, 226));
-        btnMudarTelaCadastro1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btnMudarTelaCadastro1.setForeground(new java.awt.Color(153, 50, 255));
-        btnMudarTelaCadastro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/5340287_man_people_person_user_users_icon.png"))); // NOI18N
-        btnMudarTelaCadastro1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnMudarTelaCadastro1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMudarTelaCadastro1ActionPerformed(evt);
-            }
-        });
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -90,33 +87,38 @@ public class PainelCliente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1699, Short.MAX_VALUE)
-                .addComponent(btnMudarTelaLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnMudarTelaCadastro)
-                .addGap(12, 12, 12)
-                .addComponent(btnMudarTelaCadastro1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1673, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addComponent(btnMudarTelaLogin)
+                        .addGap(14, 14, 14)
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(btnMudarTelaCadastro))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMudarTelaCadastro, btnMudarTelaLogin});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMudarTelaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnMudarTelaLogin)
-                    .addComponent(btnMudarTelaCadastro1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnMudarTelaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnMudarTelaLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMudarTelaCadastro, btnMudarTelaLogin});
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
 
@@ -169,7 +171,7 @@ public class PainelCliente extends javax.swing.JFrame {
         btnSaibaMais.setBackground(new java.awt.Color(153, 50, 255));
         btnSaibaMais.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnSaibaMais.setForeground(new java.awt.Color(255, 255, 255));
-        btnSaibaMais.setText("ADIQUIRA AGORA");
+        btnSaibaMais.setText("ADQUIRA AGORA");
         btnSaibaMais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaibaMaisActionPerformed(evt);
@@ -204,7 +206,7 @@ public class PainelCliente extends javax.swing.JFrame {
                                 .addComponent(jLabel7)))))
                 .addGap(107, 107, 107)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1026, Short.MAX_VALUE))
+                .addContainerGap(1035, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +215,7 @@ public class PainelCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(151, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
@@ -247,10 +249,6 @@ public class PainelCliente extends javax.swing.JFrame {
     private void btnMudarTelaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMudarTelaCadastroActionPerformed
-
-    private void btnMudarTelaCadastro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMudarTelaCadastro1ActionPerformed
 
     private void btnSaibaMaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaibaMaisActionPerformed
         // TODO add your handling code here:
@@ -293,7 +291,6 @@ public class PainelCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMudarTelaCadastro;
-    private javax.swing.JButton btnMudarTelaCadastro1;
     private javax.swing.JButton btnMudarTelaLogin;
     private javax.swing.JButton btnSaibaMais;
     private javax.swing.JLabel jLabel1;
@@ -307,5 +304,7 @@ public class PainelCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

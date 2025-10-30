@@ -34,6 +34,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         btnMudarTelaLogin = new javax.swing.JButton();
         btnMudarTelaCadastro = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -45,28 +47,40 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(23, 21, 56));
 
-        btnMudarTelaLogin.setBackground(new java.awt.Color(226, 226, 226));
+        btnMudarTelaLogin.setBackground(new java.awt.Color(23, 21, 56));
         btnMudarTelaLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnMudarTelaLogin.setForeground(new java.awt.Color(153, 50, 255));
         btnMudarTelaLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/5340287_man_people_person_user_users_icon.png"))); // NOI18N
         btnMudarTelaLogin.setText("LOGIN");
-        btnMudarTelaLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnMudarTelaLogin.setBorder(null);
         btnMudarTelaLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMudarTelaLoginActionPerformed(evt);
             }
         });
 
-        btnMudarTelaCadastro.setBackground(new java.awt.Color(226, 226, 226));
+        btnMudarTelaCadastro.setBackground(new java.awt.Color(23, 21, 56));
         btnMudarTelaCadastro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnMudarTelaCadastro.setForeground(new java.awt.Color(153, 50, 255));
         btnMudarTelaCadastro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/5340287_man_people_person_user_users_icon.png"))); // NOI18N
         btnMudarTelaCadastro.setText("CADASTRO");
-        btnMudarTelaCadastro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnMudarTelaCadastro.setBorder(null);
+        btnMudarTelaCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMudarTelaCadastroActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("R-Wash");
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -75,25 +89,31 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 892, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 926, Short.MAX_VALUE)
                 .addComponent(btnMudarTelaLogin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(btnMudarTelaCadastro)
                 .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnMudarTelaCadastro, btnMudarTelaLogin});
-
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnMudarTelaCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnMudarTelaLogin)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnMudarTelaLogin))
+                    .addComponent(btnMudarTelaCadastro)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnMudarTelaCadastro, btnMudarTelaLogin});
@@ -102,6 +122,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(23, 21, 56));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setAlignmentY(0.0F);
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 60)); // NOI18N
@@ -169,7 +190,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(18, 197, 183, 0);
         jPanel1.add(btnSaibaMais, gridBagConstraints);
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.LINE_START);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -182,8 +203,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMudarTelaLoginActionPerformed
 
     private void btnSaibaMaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaibaMaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSaibaMaisActionPerformed
+   setVisible(false);
+   PainelCliente janela = new PainelCliente();
+   janela.setVisible(true);    }//GEN-LAST:event_btnSaibaMaisActionPerformed
+
+    private void btnMudarTelaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastroActionPerformed
+   setVisible(false);
+   TelaCadastro janela = new TelaCadastro();
+   janela.setVisible(true);    }//GEN-LAST:event_btnMudarTelaCadastroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,5 +258,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }

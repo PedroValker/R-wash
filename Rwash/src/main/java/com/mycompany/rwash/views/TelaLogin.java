@@ -6,6 +6,7 @@ package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.Model.Usuario;
 import com.mycompany.rwash.DAO.UsuarioDAO;
+import com.mycompany.rwash.views.PainelCliente;
 import java.awt.BorderLayout;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -50,6 +51,8 @@ import javax.swing.SwingConstants;
         btnLogin = new javax.swing.JButton();
         btnMudarTelaCadastrar = new javax.swing.JButton();
         btnEsquecerSenha = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,7 @@ import javax.swing.SwingConstants;
         jLabel1.setForeground(new java.awt.Color(153, 51, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("CONECTE-SE");
+        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jLabel1.setPreferredSize(new java.awt.Dimension(100, 100));
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -67,14 +71,14 @@ import javax.swing.SwingConstants;
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.NORTH);
 
-        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
+        jPanel3.setLayout(new java.awt.GridLayout());
 
         jPanel1.setBackground(new java.awt.Color(23, 21, 56));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 1000));
         jPanel1.setPreferredSize(new java.awt.Dimension(1032, 1000));
         jPanel1.setLayout(new java.awt.GridBagLayout());
 
-        jPanel2.setBackground(new java.awt.Color(226, 226, 226));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setPreferredSize(new java.awt.Dimension(300, 300));
 
@@ -82,14 +86,16 @@ import javax.swing.SwingConstants;
         jLabel2.setText("Não tem uma conta?");
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel3.setText("Email:");
+        jLabel3.setText("Email");
 
+        txtEmailCliente.setBorder(null);
         txtEmailCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailClienteActionPerformed(evt);
             }
         });
 
+        txtSenhaCliente.setBorder(null);
         txtSenhaCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaClienteActionPerformed(evt);
@@ -97,7 +103,7 @@ import javax.swing.SwingConstants;
         });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel4.setText("Senha:");
+        jLabel4.setText("Senha");
 
         btnLogin.setBackground(new java.awt.Color(153, 49, 255));
         btnLogin.setForeground(new java.awt.Color(255, 255, 255));
@@ -109,7 +115,6 @@ import javax.swing.SwingConstants;
             }
         });
 
-        btnMudarTelaCadastrar.setBackground(new java.awt.Color(226, 226, 226));
         btnMudarTelaCadastrar.setForeground(new java.awt.Color(153, 50, 255));
         btnMudarTelaCadastrar.setText("Cadastrar");
         btnMudarTelaCadastrar.setBorder(null);
@@ -119,7 +124,6 @@ import javax.swing.SwingConstants;
             }
         });
 
-        btnEsquecerSenha.setBackground(new java.awt.Color(226, 226, 226));
         btnEsquecerSenha.setText("Esqueceu a senha?");
         btnEsquecerSenha.setBorder(null);
         btnEsquecerSenha.addActionListener(new java.awt.event.ActionListener() {
@@ -128,45 +132,61 @@ import javax.swing.SwingConstants;
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtSenhaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnMudarTelaCadastrar)))))
-                    .addComponent(btnEsquecerSenha, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(31, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnMudarTelaCadastrar))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jSeparator1)
+                                    .addComponent(jLabel3)
+                                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
+                                .addComponent(jLabel4)
+                                .addComponent(txtSenhaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnEsquecerSenha))))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
+
+        jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmailCliente, txtSenhaCliente});
+
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSenhaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addGap(0, 0, 0)
+                .addComponent(txtEmailCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtSenhaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(btnEsquecerSenha)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnMudarTelaCadastrar))
@@ -174,8 +194,6 @@ import javax.swing.SwingConstants;
                 .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12))
         );
-
-        jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmailCliente, txtSenhaCliente});
 
         jPanel1.add(jPanel2, new java.awt.GridBagConstraints());
 
@@ -206,12 +224,20 @@ import javax.swing.SwingConstants;
         boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
         if (retornoBanco) {
             JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
+            setVisible(false);
+            PainelCliente janela = new PainelCliente();
+            janela.setVisible(true);      
         } else {
             JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
         }
     }
-  //passar o objeto para o banco de dados
-// TODO add your handling code here:
+ 
+    
+    
+    
+    
+    
+    
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void txtSenhaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaClienteActionPerformed
@@ -223,7 +249,9 @@ import javax.swing.SwingConstants;
     }//GEN-LAST:event_txtEmailClienteActionPerformed
 
     private void btnMudarTelaCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarTelaCadastrarActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        TelaCadastro janela = new TelaCadastro();
+        janela.setVisible(true);     
     }//GEN-LAST:event_btnMudarTelaCadastrarActionPerformed
 
     private void btnEsquecerSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEsquecerSenhaActionPerformed
@@ -277,6 +305,8 @@ import javax.swing.SwingConstants;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JPasswordField txtSenhaCliente;
     // End of variables declaration//GEN-END:variables
