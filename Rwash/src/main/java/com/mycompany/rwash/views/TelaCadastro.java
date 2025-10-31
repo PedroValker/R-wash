@@ -232,34 +232,30 @@ Usuario objAlterar = null;
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
 
-        if (objAlterar != null) {
-            // Modo de alteração
-            String nome = txtNomeCliente.getText();
-            String email = txtEmailCliente.getText();
-
-            objAlterar.setNomeCliente(nome);
-            objAlterar.setEmailCliente(email);
-        } else {
+       
             // Modo de cadastro
             String nome = txtNomeCliente.getText();
             String email = txtEmailCliente.getText();
             String senha = txtSenhaCliente.getText();
-
             Usuario objCadastrar = new Usuario(nome, email, senha);
-
             boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
+
+
+          
             if (retornoBanco) {
                 JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
-            }
+         
         }
         //passar o objeto para o banco de dados
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnMudarParaTelaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarParaTelaLoginActionPerformed
-        // TODO add your handling code here:
+           setVisible(false);
+           TelaLogin janela = new TelaLogin();
+           janela.setVisible(true);     
     }//GEN-LAST:event_btnMudarParaTelaLoginActionPerformed
 
     /**
