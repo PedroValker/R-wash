@@ -206,33 +206,30 @@ import javax.swing.SwingConstants;
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
       
-    if (objAlterar != null) {
-        // Modo de alteração
-        String senha = txtSenhaCliente.getText();
         String email = txtEmailCliente.getText();
+        String senha = new String(txtSenhaCliente.getPassword()); 
 
-        objAlterar.setNomeCliente(senha);
-        objAlterar.setEmailCliente(email);
-    } else {
-        // Modo de cadastro
-        
-        String email = txtEmailCliente.getText();
-        String senha = txtSenhaCliente.getText();
+        // Autenticar no DAO
+        int idClienteLogado = UsuarioDAO.autenticar(email, senha);
 
-        Usuario objCadastrar = new Usuario(email, senha);
+        if (idClienteLogado > 0) {
+            // LOGIN BEM-SUCEDIDO (ID > 0)
 
-        boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
-        if (retornoBanco) {
-            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
-            setVisible(false);
-            PainelCliente janela = new PainelCliente();
-            janela.setVisible(true);      
+           JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+           this.dispose(); // Fecha a tela de login
+
+        // painel do cliente
+            PainelCliente painel = new PainelCliente(idClienteLogado);
+            painel.setVisible(true);
+
+            // REDIRECIONAMENTO SIMPLES: Abra a tela principal do cliente, passando o ID.
+         
+
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
+            // LOGIN FALHOU (ID = 0)
+            JOptionPane.showMessageDialog(rootPane, "Falha no Login. Email ou Senha inválidos.", 
+                                          "Erro de Autenticação", JOptionPane.ERROR_MESSAGE);
         }
-    }
- 
-    
     
     
     

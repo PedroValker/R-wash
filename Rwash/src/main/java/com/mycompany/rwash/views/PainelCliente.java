@@ -4,18 +4,40 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.DAO.UsuarioDAO;
+import com.mycompany.rwash.Model.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author aluno
  */
 public class PainelCliente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PainelCliente
-     */
+    private int idCliente; // armazena o ID do cliente logado
+
+    // Construtor padrão
     public PainelCliente() {
         initComponents();
     }
+
+    // Novo construtor que recebe o ID do cliente
+    public PainelCliente(int idClienteLogado) {
+        this.idCliente = idClienteLogado;
+        initComponents();
+        // Aqui você pode carregar dados do cliente usando o ID
+        carregarDadosCliente();
+    }
+
+    private void carregarDadosCliente() {
+        // Exemplo: buscar nome do cliente pelo ID e mostrar no painel
+        Usuario cliente = UsuarioDAO.buscarPorId(idCliente);
+        if(cliente != null) {
+            jLabel5.setText("Bem-vindo, " + cliente.getNomeCliente() + "!");
+        }
+    }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -307,4 +329,6 @@ public class PainelCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
+
+    
 }
