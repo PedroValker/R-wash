@@ -112,13 +112,10 @@ public class PainelCliente extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap(27, Short.MAX_VALUE)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnLogout)))
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -227,7 +224,7 @@ public class PainelCliente extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(145, Short.MAX_VALUE)
+                .addContainerGap(166, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel1)
@@ -253,17 +250,21 @@ public class PainelCliente extends javax.swing.JFrame {
 
     private void btnAdquirirProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProduto2ActionPerformed
         setVisible(false);
-        TelaLogin janela = new TelaLogin();
+        TelaCompraProduto janela = new TelaCompraProduto();
         janela.setVisible(true);
 
     }//GEN-LAST:event_btnAdquirirProduto2ActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-        // TODO add your handling code here:
+          setVisible(false);
+        TelaLogin janela = new TelaLogin();
+        janela.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
-        // TODO add your handling code here:
+          setVisible(false);
+        TelaCompraProduto janela = new TelaCompraProduto();
+        janela.setVisible(true);
     }//GEN-LAST:event_btnAdquirirProdutoActionPerformed
 
     /**
