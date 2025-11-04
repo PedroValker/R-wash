@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\UsuarioDAO.java
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\Model\Usuario.java
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\Rwash.java
@@ -6,3 +7,15 @@ C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwas
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastro.java
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaLogin.java
 C:\Users\pedro\OneDrive\Documentos\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipal.java
+=======
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\UsuarioDAO.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Model\Usuario.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Rwash.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\DashBoardCliente.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\PainelCliente.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastro.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastroEndereço.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastroMaquina.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaLogin.java
+C:\Users\aluno\Documents\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipal.java
+>>>>>>> 826c9c35665c144c9bed7aa0dda35b4219d03ec1

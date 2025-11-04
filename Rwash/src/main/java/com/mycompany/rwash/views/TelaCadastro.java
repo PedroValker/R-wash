@@ -6,7 +6,9 @@ package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
@@ -19,6 +21,11 @@ Usuario objAlterar = null;
      */
     public TelaCadastro() {
         initComponents();
+                JButton[] btns={btnMudarParaTelaLogin,btnCadastro};
+        for(JButton btn:btns){
+            btn.setUI(new BasicButtonUI());
+        }
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -173,7 +180,7 @@ Usuario objAlterar = null;
                         .addComponent(jLabel2)
                         .addGap(3, 3, 3)
                         .addComponent(btnMudarParaTelaLogin)))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEmailCliente, txtNomeCliente});
@@ -185,6 +192,7 @@ Usuario objAlterar = null;
                 .addComponent(jLabel5)
                 .addGap(0, 0, 0)
                 .addComponent(txtNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
@@ -204,7 +212,7 @@ Usuario objAlterar = null;
                     .addComponent(btnMudarParaTelaLogin))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastro, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEmailCliente, txtNomeCliente});
@@ -231,25 +239,11 @@ Usuario objAlterar = null;
     }//GEN-LAST:event_txtSenhaClienteActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
-
-       
-            // Modo de cadastro
-            String nome = txtNomeCliente.getText();
-            String email = txtEmailCliente.getText();
-            String senha = txtSenhaCliente.getText();
-            Usuario objCadastrar = new Usuario(nome, email, senha);
-            boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
-
-
-          
-            if (retornoBanco) {
-                JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
-         
-        }
-        //passar o objeto para o banco de dados
-        // TODO add your handling code here:
+ setVisible(false);
+        PainelCliente janela = new PainelCliente();
+        janela.setVisible(true);   
+    
+    
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnMudarParaTelaLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMudarParaTelaLoginActionPerformed
