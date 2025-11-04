@@ -18,7 +18,7 @@ public class PainelCliente extends javax.swing.JFrame {
      */
     public PainelCliente() {
         initComponents();
-                JButton[] btns={btnLogout,btnAdquirirProduto,btnAdquirirProduto2};
+                JButton[] btns={btnLogin,btnAdquirirProduto,btnAdquirirProduto2};
         for(JButton btn:btns){
             btn.setUI(new BasicButtonUI());
         }
@@ -36,7 +36,7 @@ public class PainelCliente extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnAdquirirProduto2 = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -50,6 +50,7 @@ public class PainelCliente extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         btnAdquirirProduto = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,14 +67,14 @@ public class PainelCliente extends javax.swing.JFrame {
             }
         });
 
-        btnLogout.setBackground(new java.awt.Color(23, 21, 56));
-        btnLogout.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(153, 50, 255));
-        btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(23, 21, 56));
+        btnLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(153, 50, 255));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -95,15 +96,15 @@ public class PainelCliente extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1690, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1362, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(btnAdquirirProduto2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
-                        .addComponent(btnLogout))
+                        .addGap(12, 12, 12)
+                        .addComponent(btnLogin))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
@@ -115,8 +116,8 @@ public class PainelCliente extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(10, 10, 10))
+                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnAdquirirProduto2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -150,9 +151,9 @@ public class PainelCliente extends javax.swing.JFrame {
         jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 29)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(153, 50, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Transforme sua rotina e economize água de");
+        jLabel3.setText("Transforme");
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
@@ -190,6 +191,13 @@ public class PainelCliente extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
 
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 29)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText(" sua rotina e economize água de");
+        jLabel9.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel9.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -197,36 +205,40 @@ public class PainelCliente extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(275, 275, 275)
-                        .addComponent(btnAdquirirProduto))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(jLabel8))
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel1))
+                                .addGap(69, 69, 69)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel8))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addGap(254, 254, 254)
+                                        .addComponent(jLabel7))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(254, 254, 254)
-                                .addComponent(jLabel7)))))
-                .addGap(140, 140, 140)
+                                .addGap(67, 67, 67)
+                                .addComponent(jLabel3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel9)))
+                        .addGap(70, 70, 70))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnAdquirirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(264, 264, 264)))
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1002, Short.MAX_VALUE))
+                .addContainerGap(741, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(0, 0, 0)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(0, 0, 0)))
                 .addComponent(jLabel1)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel2)
@@ -236,9 +248,13 @@ public class PainelCliente extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(btnAdquirirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(176, 176, 176))
+                .addGap(177, 177, 177))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel4);
@@ -250,20 +266,20 @@ public class PainelCliente extends javax.swing.JFrame {
 
     private void btnAdquirirProduto2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProduto2ActionPerformed
         setVisible(false);
-        TelaCompraProduto janela = new TelaCompraProduto();
+        TelaCadastroMaquina janela = new TelaCadastroMaquina();
         janela.setVisible(true);
 
     }//GEN-LAST:event_btnAdquirirProduto2ActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
           setVisible(false);
         TelaLogin janela = new TelaLogin();
         janela.setVisible(true);
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
           setVisible(false);
-        TelaCompraProduto janela = new TelaCompraProduto();
+        TelaCadastroMaquina janela = new TelaCadastroMaquina();
         janela.setVisible(true);
     }//GEN-LAST:event_btnAdquirirProdutoActionPerformed
 
@@ -305,7 +321,7 @@ public class PainelCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdquirirProduto;
     private javax.swing.JButton btnAdquirirProduto2;
-    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -314,6 +330,7 @@ public class PainelCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

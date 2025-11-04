@@ -4,17 +4,28 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.DAO.UsuarioDAO;
+import com.mycompany.rwash.Model.Usuario;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.basic.BasicButtonUI;
+
 /**
  *
  * @author luizg
  */
-public class TelaCompraProduto extends javax.swing.JFrame {
+public class TelaCadastroMaquina extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaCompraProduto
      */
-    public TelaCompraProduto() {
+    public TelaCadastroMaquina() {
         initComponents();
+        JButton[] btns={btnCadastroMaquina,btnProsseguir};
+        for(JButton btn:btns){
+            btn.setUI(new BasicButtonUI());
+        }
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -37,7 +48,6 @@ public class TelaCompraProduto extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCapacidadeCarga = new javax.swing.JTextField();
-        txtEficiencia = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
         btnCadastroMaquina = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -45,6 +55,7 @@ public class TelaCompraProduto extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        txtEficienciaEnergetica = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -94,7 +105,7 @@ public class TelaCompraProduto extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(23, 21, 56));
         jPanel2.setMaximumSize(new java.awt.Dimension(1000, 1000));
         jPanel2.setPreferredSize(new java.awt.Dimension(1032, 1000));
-        jPanel2.setLayout(new java.awt.GridLayout());
+        jPanel2.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -120,19 +131,12 @@ public class TelaCompraProduto extends javax.swing.JFrame {
             }
         });
 
-        txtEficiencia.setBorder(null);
-        txtEficiencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEficienciaActionPerformed(evt);
-            }
-        });
-
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Eficiência Energética");
 
         btnCadastroMaquina.setBackground(new java.awt.Color(153, 49, 255));
         btnCadastroMaquina.setForeground(new java.awt.Color(255, 255, 255));
-        btnCadastroMaquina.setText("CADASTRO MÁQUINA");
+        btnCadastroMaquina.setText("CADASTRAR MÁQUINA");
         btnCadastroMaquina.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCadastroMaquina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,59 +165,68 @@ public class TelaCompraProduto extends javax.swing.JFrame {
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
+        txtEficienciaEnergetica.setBorder(null);
+        txtEficienciaEnergetica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtEficienciaEnergeticaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtModeloMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtCapacidadeCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtEficiencia, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(btnCadastroMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5)
+                            .addComponent(txtModeloMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(btnCadastroMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtCapacidadeCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel4))
+                            .addComponent(txtEficienciaEnergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(btnProsseguir)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnProsseguir)
-                .addGap(109, 109, 109))
         );
 
-        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCapacidadeCarga, txtEficiencia, txtModeloMaquina});
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtCapacidadeCarga, txtEficienciaEnergetica, txtModeloMaquina});
 
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel5)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(txtModeloMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jLabel3)
                 .addGap(0, 0, 0)
                 .addComponent(txtCapacidadeCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(txtEficiencia, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4)
+                .addGap(1, 1, 1)
+                .addComponent(txtEficienciaEnergetica, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel2)
                 .addGap(0, 0, 0)
                 .addComponent(btnProsseguir)
@@ -221,6 +234,8 @@ public class TelaCompraProduto extends javax.swing.JFrame {
                 .addComponent(btnCadastroMaquina, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtCapacidadeCarga, txtEficienciaEnergetica, txtModeloMaquina});
 
         jPanel2.add(jPanel3);
 
@@ -239,34 +254,22 @@ public class TelaCompraProduto extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCapacidadeCargaActionPerformed
 
-    private void txtEficienciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEficienciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEficienciaActionPerformed
-
     private void btnCadastroMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroMaquinaActionPerformed
 
-        // Modo de cadastro
-        String nome = txtModeloMaquina.getText();
-        String email = txtCapacidadeCarga.getText();
-        String senha = txtEficiencia.getText();
-        Usuario objCadastrar = new Usuario(nome, email, senha);
-        boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
-
-        if (retornoBanco) {
-            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
-
-        }
-        //passar o objeto para o banco de dados
-        // TODO add your handling code here:
+  setVisible(false);
+        TelaCadastroEndereço janela = new TelaCadastroEndereço();
+        janela.setVisible(true);
     }//GEN-LAST:event_btnCadastroMaquinaActionPerformed
 
     private void btnProsseguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProsseguirActionPerformed
         setVisible(false);
-        TelaLogin janela = new TelaLogin();
+        TelaCadastroEndereço janela = new TelaCadastroEndereço();
         janela.setVisible(true);
     }//GEN-LAST:event_btnProsseguirActionPerformed
+
+    private void txtEficienciaEnergeticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEficienciaEnergeticaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEficienciaEnergeticaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -285,20 +288,21 @@ public class TelaCompraProduto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCompraProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMaquina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCompraProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMaquina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCompraProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMaquina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCompraProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroMaquina.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCompraProduto().setVisible(true);
+                new TelaCadastroMaquina().setVisible(true);
             }
         });
     }
@@ -321,7 +325,7 @@ public class TelaCompraProduto extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField txtCapacidadeCarga;
-    private javax.swing.JPasswordField txtEficiencia;
+    private javax.swing.JTextField txtEficienciaEnergetica;
     private javax.swing.JTextField txtModeloMaquina;
     // End of variables declaration//GEN-END:variables
 }

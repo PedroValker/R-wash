@@ -213,33 +213,9 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
       
-    if (objAlterar != null) {
-        // Modo de alteração
-        String senha = txtSenhaCliente.getText();
-        String email = txtEmailCliente.getText();
-
-        objAlterar.setNomeCliente(senha);
-        objAlterar.setEmailCliente(email);
-    } else {
-        // Modo de cadastro
-        
-        String email = txtEmailCliente.getText();
-        String senha = txtSenhaCliente.getText();
-
-        Usuario objCadastrar = new Usuario(email, senha);
-
-        boolean retornoBanco = UsuarioDAO.salvar(objCadastrar);
-        if (retornoBanco) {
-            JOptionPane.showMessageDialog(rootPane, "Cliente cadastrado com sucesso");
-            setVisible(false);
-            PainelCliente janela = new PainelCliente();
-            janela.setVisible(true);      
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Falha ao cadastrar");
-        }
-    }
- 
-    
+       setVisible(false);
+        PainelCliente janela = new PainelCliente();
+        janela.setVisible(true);   
     
     
     
