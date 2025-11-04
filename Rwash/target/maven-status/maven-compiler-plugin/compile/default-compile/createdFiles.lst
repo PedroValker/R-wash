@@ -7,6 +7,7 @@ com\mycompany\rwash\views\TelaLogin.class
 com\mycompany\rwash\views\TelaCadastro$1.class
 com\mycompany\rwash\views\TelaCadastro$6.class
 com\mycompany\rwash\views\TelaPrincipal.class
+com\mycompany\rwash\views\TelaCompraProduto$1.class
 com\mycompany\rwash\views\TelaCadastro$4.class
 com\mycompany\rwash\views\TelaPrincipal$4.class
 com\mycompany\rwash\Model\Usuario.class
@@ -18,6 +19,7 @@ com\mycompany\rwash\DAO\UsuarioDAO.class
 com\mycompany\rwash\views\TelaPrincipal$1.class
 com\mycompany\rwash\views\PainelCliente$1.class
 com\mycompany\rwash\views\TelaLogin$2.class
+com\mycompany\rwash\views\TelaCompraProduto.class
 com\mycompany\rwash\views\PainelCliente$4.class
 com\mycompany\rwash\views\PainelCliente$2.class
 com\mycompany\rwash\views\TelaCadastro$2.class

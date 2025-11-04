@@ -5,6 +5,8 @@
 package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.Model.Usuario;
+import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
@@ -18,6 +20,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        JButton[] btns={btnMudarTelaLogin,btnMudarTelaCadastro};
+        for(JButton btn:btns){
+            btn.setUI(new BasicButtonUI());
+            
+        }
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -87,9 +95,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(45, 45, 45)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 926, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1003, Short.MAX_VALUE)
                 .addComponent(btnMudarTelaLogin)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -160,13 +168,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 163, 0, 0);
         jPanel1.add(jLabel3, gridBagConstraints);
 
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridheight = 4;
-        gridBagConstraints.ipadx = -188;
+        gridBagConstraints.ipadx = -200;
         gridBagConstraints.ipady = -117;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(178, 417, 183, 133);

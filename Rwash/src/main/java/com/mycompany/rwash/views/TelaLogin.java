@@ -8,8 +8,10 @@ import com.mycompany.rwash.Model.Usuario;
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.views.PainelCliente;
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
  *
@@ -27,6 +29,11 @@ import javax.swing.SwingConstants;
          jPanel4.add(jLabel1, BorderLayout.CENTER);
          jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
          jLabel4.setVerticalAlignment(SwingConstants.CENTER);
+                JButton[] btns={btnEsquecerSenha,btnMudarTelaCadastrar,btnLogin};
+                for(JButton btn:btns){
+                btn.setUI(new BasicButtonUI());
+        }
+                this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -71,7 +78,7 @@ import javax.swing.SwingConstants;
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.NORTH);
 
-        jPanel3.setLayout(new java.awt.GridLayout());
+        jPanel3.setLayout(new java.awt.GridLayout(1, 0));
 
         jPanel1.setBackground(new java.awt.Color(23, 21, 56));
         jPanel1.setMaximumSize(new java.awt.Dimension(1000, 1000));
@@ -145,14 +152,6 @@ import javax.swing.SwingConstants;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnMudarTelaCadastrar))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +162,15 @@ import javax.swing.SwingConstants;
                                     .addComponent(txtEmailCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE))
                                 .addComponent(jLabel4)
                                 .addComponent(txtSenhaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnEsquecerSenha))))
+                            .addComponent(btnEsquecerSenha)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMudarTelaCadastrar))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
