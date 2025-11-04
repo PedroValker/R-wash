@@ -1,10 +1,6 @@
 com\mycompany\rwash\views\TelaCadastro$3.class
 com\mycompany\rwash\views\TelaLogin$3.class
-<<<<<<< HEAD
-com\mycompany\rwash\views\jLabelNomeCliente.class
-=======
 com\mycompany\rwash\views\TelaCadastroEndereço$5.class
->>>>>>> 826c9c35665c144c9bed7aa0dda35b4219d03ec1
 com\mycompany\rwash\views\PainelCliente$3.class
 com\mycompany\rwash\views\TelaPrincipal$2.class
 com\mycompany\rwash\views\TelaLogin.class
@@ -24,6 +20,7 @@ com\mycompany\rwash\views\TelaPrincipal$3.class
 com\mycompany\rwash\views\TelaCadastroEndereço$2.class
 com\mycompany\rwash\views\DashBoardCliente.class
 com\mycompany\rwash\views\TelaLogin$5.class
+com\mycompany\rwash\views\jLabelNomeCliente.class
 com\mycompany\rwash\views\TelaCadastroMaquina$6.class
 com\mycompany\rwash\views\TelaCadastroMaquina$2.class
 com\mycompany\rwash\views\TelaLogin$1.class

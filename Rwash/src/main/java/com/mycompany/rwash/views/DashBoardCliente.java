@@ -17,6 +17,10 @@ public class DashBoardCliente extends javax.swing.JFrame {
         initComponents();
     }
 
+    DashBoardCliente(int idClienteLogado) {
+          initComponents(); //
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

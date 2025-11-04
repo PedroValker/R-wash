@@ -29,7 +29,7 @@ CREATE TABLE `cliente` (
   `cpfCliente` varchar(45) DEFAULT NULL,
   `senhaCliente` varchar(255) NOT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'teste','teste@email.com',NULL,'123'),(2,'teste','teste@teste',NULL,'123'),(3,'Gustavo','Gustavo@gmail',NULL,'1234'),(4,'PEdro Vicente','Pedroteste@gmail',NULL,'12345'),(5,'ricarod','ricardo@gmail',NULL,'4321'),(6,'kevyn','kevy@gmail',NULL,'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
+INSERT INTO `cliente` VALUES (1,'teste','teste@email.com',NULL,'123'),(2,'teste','teste@teste',NULL,'123'),(3,'Gustavo','Gustavo@gmail',NULL,'1234'),(4,'PEdro Vicente','Pedroteste@gmail',NULL,'12345'),(5,'ricarod','ricardo@gmail',NULL,'4321'),(6,'kevyn','kevy@gmail',NULL,'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),(7,'vicente','vicente@gmail',NULL,'51e3434f6d0956a0873c73f1d3eba0901c8a2b30ab584ca00d6d974d5e8a3ca8');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +63,7 @@ CREATE TABLE `compra` (
   KEY `compra_ibfk_2` (`idMaquina`),
   CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
   CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`idMaquina`) REFERENCES `maquina` (`idMaquina`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -72,6 +72,7 @@ CREATE TABLE `compra` (
 
 LOCK TABLES `compra` WRITE;
 /*!40000 ALTER TABLE `compra` DISABLE KEYS */;
+INSERT INTO `compra` VALUES (2,7,1,'2025-11-10 00:00:00','pendente','1','teste','teste');
 /*!40000 ALTER TABLE `compra` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -144,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-01 20:18:21
+-- Dump completed on 2025-11-04 17:52:55

@@ -4,14 +4,12 @@
  */
 package com.mycompany.rwash.views;
 
-<<<<<<< HEAD
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
 import javax.swing.JOptionPane;
-=======
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
->>>>>>> 826c9c35665c144c9bed7aa0dda35b4219d03ec1
+
 
 /**
  *

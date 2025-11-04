@@ -213,37 +213,40 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
       
-<<<<<<< HEAD
-        String email = txtEmailCliente.getText();
-        String senha = new String(txtSenhaCliente.getPassword()); 
+                                   
+    String email = txtEmailCliente.getText();
+    String senha = new String(txtSenhaCliente.getPassword()); 
 
-        // Autenticar no DAO
-        int idClienteLogado = UsuarioDAO.autenticar(email, senha);
+    // Autenticar no DAO
+    int idClienteLogado = UsuarioDAO.autenticar(email, senha);
 
-        if (idClienteLogado > 0) {
-            // LOGIN BEM-SUCEDIDO (ID > 0)
+    if (idClienteLogado > 0) {
+        JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+        this.dispose(); // Fecha a tela de login
 
-           JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-           this.dispose(); // Fecha a tela de login
+        // Verifica se o cliente já fez uma compra
+        boolean jaComprou = UsuarioDAO.clienteJaComprou(idClienteLogado);
 
-        // painel do cliente
-            PainelCliente painel = new PainelCliente(idClienteLogado);
-            painel.setVisible(true);
+        if (jaComprou) {
+        // Cliente ainda não comprou → vai para a tela de compra
+        DashBoardCliente dashboard = new DashBoardCliente(idClienteLogado);
+        dashboard.setVisible(true);
+        
+    } else {
+        
+        // Cliente já comprou → vai para o painel do cliente
+        PainelCliente painel = new PainelCliente(idClienteLogado);
+        painel.setVisible(true);
+    }
 
-            // REDIRECIONAMENTO SIMPLES: Abra a tela principal do cliente, passando o ID.
-         
-
-        } else {
-            // LOGIN FALHOU (ID = 0)
-            JOptionPane.showMessageDialog(rootPane, "Falha no Login. Email ou Senha inválidos.", 
-                                          "Erro de Autenticação", JOptionPane.ERROR_MESSAGE);
-        }
-=======
-       setVisible(false);
-        PainelCliente janela = new PainelCliente();
-        janela.setVisible(true);   
->>>>>>> 826c9c35665c144c9bed7aa0dda35b4219d03ec1
+    } else {
+        JOptionPane.showMessageDialog(rootPane, 
+            "Falha no Login. Email ou Senha inválidos.", 
+            "Erro de Autenticação", 
+            JOptionPane.ERROR_MESSAGE);
     
+}
+
     
     
     

@@ -239,10 +239,35 @@ Usuario objAlterar = null;
     }//GEN-LAST:event_txtSenhaClienteActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
- setVisible(false);
-        PainelCliente janela = new PainelCliente();
-        janela.setVisible(true);   
-    
+    String nome = txtNomeCliente.getText().trim();
+     String email = txtEmailCliente.getText().trim();
+     String senha = new String(txtSenhaCliente.getPassword()).trim();
+
+     // Validação simples
+     if (nome.isEmpty() || email.isEmpty() || senha.isEmpty()) {
+         JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+         return;
+     }
+
+     // Cria o objeto do usuário
+     Usuario novoUsuario = new Usuario();
+     novoUsuario.setNomeCliente(nome);
+     novoUsuario.setEmailCliente(email);
+     novoUsuario.setSenhaCliente(senha);
+
+     // Tenta salvar no banco
+     boolean sucesso = UsuarioDAO.salvar(novoUsuario);
+
+     if (sucesso) {
+         JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+         // Fecha a tela atual e abre a de login
+         this.dispose();
+         TelaLogin login = new TelaLogin();
+         login.setVisible(true);
+     } else {
+         JOptionPane.showMessageDialog(this, "Erro ao cadastrar! Verifique o console para mais detalhes.", "Erro", JOptionPane.ERROR_MESSAGE);
+     }
     
     }//GEN-LAST:event_btnCadastroActionPerformed
 

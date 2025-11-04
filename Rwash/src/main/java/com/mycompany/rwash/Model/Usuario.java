@@ -6,6 +6,7 @@ public class Usuario {
     private String emailCliente;
     private String cpfCliente;
     private String senhaCliente;
+    private boolean statusCompra; // true = já comprou, false = não comprou
 
     // Construtores
     public Usuario() {
@@ -77,4 +78,16 @@ public class Usuario {
     public void setSenhaCliente(String senhaCliente) {
         this.senhaCliente = senhaCliente;
     }
+    
+  
+
+    public boolean isStatusCompra() {
+        return statusCompra;
+    }
+
+    public void setStatusCompra(boolean statusCompra) {
+        this.statusCompra = statusCompra;
+    }
+
+    
 }
