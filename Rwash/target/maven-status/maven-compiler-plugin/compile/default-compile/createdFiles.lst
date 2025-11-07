@@ -3,6 +3,7 @@ com\mycompany\rwash\views\TelaLogin$3.class
 com\mycompany\rwash\views\TelaCadastroEndereço$5.class
 com\mycompany\rwash\views\PainelCliente$3.class
 com\mycompany\rwash\views\TelaPrincipal$2.class
+com\mycompany\rwash\views\PainelGrafico.class
 com\mycompany\rwash\views\TelaLogin.class
 com\mycompany\rwash\views\TelaCadastro$6.class
 com\mycompany\rwash\Model\Usuario.class

@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.rwash.views;
-
+import javax.swing.JFrame;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import javax.swing.JFrame;
 /**
  *
  * @author aluno
@@ -12,13 +16,52 @@ public class DashBoardCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form DashBoardCliente
+     * @param idClienteLogado
      */
-    public DashBoardCliente() {
+    public DashBoardCliente(int idClienteLogado) {
         initComponents();
-    }
+        
+         setTitle("Dashboard - Reuso de Água da Lavadora");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new java.awt.GridLayout(2, 2));
 
-    DashBoardCliente(int idClienteLogado) {
-          initComponents(); //
+        // Leitura dos dados do CSV
+        ArrayList<String> datas = new ArrayList<>();
+        ArrayList<Double> turbidez = new ArrayList<>();
+        ArrayList<Double> temperatura = new ArrayList<>();
+        ArrayList<Double> consumoAgua = new ArrayList<>();
+        ArrayList<Double> consumoEnergia = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aluno\\Downloads\\R-Wash\\R-wash\\Rwash\\src\\main\\java\\com\\mycompany\\rwash\\views\\dados.csv"))) {
+            String linha = br.readLine(); 
+            while ((linha = br.readLine()) != null) {
+                String[] partes = linha.split(",");
+                datas.add(partes[0]);
+                turbidez.add(Double.parseDouble(partes[1]));
+                temperatura.add(Double.parseDouble(partes[2]));
+                consumoAgua.add(Double.parseDouble(partes[3]));
+                consumoEnergia.add(Double.parseDouble(partes[4]));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String[] categorias = datas.toArray(new String[0]);
+        double[] vTurbidez = turbidez.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] vTemp = temperatura.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] vAgua = consumoAgua.stream().mapToDouble(Double::doubleValue).toArray();
+        double[] vEnergia = consumoEnergia.stream().mapToDouble(Double::doubleValue).toArray();
+
+        // Adiciona gráficos ao dashboard
+        add(new PainelGrafico("Turbidez", "Data", "NTU", categorias, vTurbidez));
+        add(new PainelGrafico("Temperatura", "Data", "°C", categorias, vTemp));
+        add(new PainelGrafico("Consumo de Água", "Data", "Litros", categorias, vAgua));
+        add(new PainelGrafico("Consumo de Energia", "Data", "kWh", categorias, vEnergia));
+
+        pack();
+        setSize(900, 700);
+        setLocationRelativeTo(null);
+        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -30,27 +73,17 @@ public class DashBoardCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("DASHBOARD");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(218, 218, 218)
-                .addComponent(jLabel1)
-                .addContainerGap(318, Short.MAX_VALUE))
+            .addGap(0, 922, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+            .addGap(0, 603, Short.MAX_VALUE)
         );
 
         pack();
@@ -84,14 +117,30 @@ public class DashBoardCliente extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DashBoardCliente().setVisible(true);
+      try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        });
+        }
+    } catch (Exception ex) {
+        ex.printStackTrace();
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            int idClienteTeste = 1; // valor fixo para teste sem login
+            new DashBoardCliente(idClienteTeste).setVisible(true);
+        }
+    });
+    }
+         
+      
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
