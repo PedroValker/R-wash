@@ -15,14 +15,14 @@ import javax.swing.plaf.basic.BasicButtonUI;
  *
  * @author aluno
  */
-public class PainelCliente extends javax.swing.JFrame {
+public class PainelClienteNãoLogado extends javax.swing.JFrame {
 
     private int idCliente; // armazena o ID do cliente logado
 
     // Construtor padrão
-    public PainelCliente() {
+    public PainelClienteNãoLogado() {
         initComponents();
-                JButton[] btns={btnLogout,btnAdquirirProduto,btnAdquirirProduto2};
+                JButton[] btns={btnLogin,btnAdquirirProduto,btnAdquirirProduto2};
         for(JButton btn:btns){
             btn.setUI(new BasicButtonUI());
         }
@@ -30,7 +30,7 @@ public class PainelCliente extends javax.swing.JFrame {
     }
 
     // Novo construtor que recebe o ID do cliente
-    public PainelCliente(int idClienteLogado) {
+    public PainelClienteNãoLogado(int idClienteLogado) {
         this.idCliente = idClienteLogado;
         initComponents();
         // Aqui você pode carregar dados do cliente usando o ID
@@ -58,7 +58,7 @@ public class PainelCliente extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnAdquirirProduto2 = new javax.swing.JButton();
-        btnLogout = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -89,14 +89,14 @@ public class PainelCliente extends javax.swing.JFrame {
             }
         });
 
-        btnLogout.setBackground(new java.awt.Color(23, 21, 56));
-        btnLogout.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btnLogout.setForeground(new java.awt.Color(153, 50, 255));
-        btnLogout.setText("Logout");
-        btnLogout.setBorder(null);
-        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+        btnLogin.setBackground(new java.awt.Color(23, 21, 56));
+        btnLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(153, 50, 255));
+        btnLogin.setText("Login");
+        btnLogin.setBorder(null);
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogoutActionPerformed(evt);
+                btnLoginActionPerformed(evt);
             }
         });
 
@@ -126,7 +126,7 @@ public class PainelCliente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(btnLogout))
+                        .addComponent(btnLogin))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
@@ -138,7 +138,7 @@ public class PainelCliente extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -291,15 +291,15 @@ public class PainelCliente extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdquirirProduto2ActionPerformed
 
-    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
           setVisible(false);
         TelaLogin janela = new TelaLogin();
         janela.setVisible(true);
-    }//GEN-LAST:event_btnLogoutActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
           setVisible(false);
-        TelaCadastroMaquina janela = new TelaCadastroMaquina();
+        TelaLogin janela = new TelaLogin();
         janela.setVisible(true);
     }//GEN-LAST:event_btnAdquirirProdutoActionPerformed
 
@@ -320,20 +320,21 @@ public class PainelCliente extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PainelCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PainelCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PainelCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PainelCliente().setVisible(true);
+                new PainelClienteNãoLogado().setVisible(true);
             }
         });
     }
@@ -341,7 +342,7 @@ public class PainelCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdquirirProduto;
     private javax.swing.JButton btnAdquirirProduto2;
-    private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

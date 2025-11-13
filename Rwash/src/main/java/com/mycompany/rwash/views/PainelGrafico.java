@@ -4,7 +4,7 @@
  */
 package com.mycompany.rwash.views;
 
-import java.awt.Color;
+import java.awt.*;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -15,7 +15,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 
 public class PainelGrafico extends JPanel {
 
-     public PainelGrafico(String titulo, String eixoX, String eixoY, String[] categorias, double[] valores) {
+    public PainelGrafico(String titulo, String eixoX, String eixoY, String[] categorias, double[] valores) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
         for (int i = 0; i < categorias.length; i++) {
@@ -23,55 +23,50 @@ public class PainelGrafico extends JPanel {
         }
 
         JFreeChart chart = ChartFactory.createLineChart(
-                titulo, eixoX, eixoY, dataset);
-        
-        chart.setBackgroundPaint(Color.WHITE); // fundo da área do chart
+        titulo, eixoX, eixoY, dataset,
+        org.jfree.chart.plot.PlotOrientation.VERTICAL,
+        false,  // <<< DESATIVA A LEGENDA
+        true,
+        false
+);
+
+
+        // === Cores base ===
+        Color roxoClaro = new Color(190, 160, 255); // topo
+        Color roxoEscuro = new Color(100, 60, 180); // base
+        Color branco = Color.WHITE;
+
+        // === Configuração do gráfico ===
+        chart.setBackgroundPaint(roxoClaro); // fundo geral
         CategoryPlot plot = chart.getCategoryPlot();
 
-        // Converter HSV para RGB
-        float hue = 244f / 360f;
-        float saturation = 0.62f;
-        float value = 0.22f;
-        Color roxoFundo = Color.getHSBColor(hue, saturation, value);
+        // Gradiente para o fundo do gráfico
+        GradientPaint gradienteFundo = new GradientPaint(
+                0, 0, roxoClaro,          // parte superior
+                0, 400, roxoEscuro        // parte inferior
+        );
+        plot.setBackgroundPaint(gradienteFundo);
 
-        float valuePlot = 0.35f; 
-        Color roxoPlot = Color.getHSBColor(hue, saturation, valuePlot);
-        
-        float saturationLinha = 0.8f;
-        float valueLinha = 0.7f;
-        Color roxoLinha = Color.getHSBColor(hue, saturationLinha, valueLinha);
-        
-       chart.setBackgroundPaint(roxoFundo);  // antes estava Color.BLACK
-        plot.setBackgroundPaint(roxoFundo);          // fundo do gráfico
-        plot.setDomainGridlinePaint(Color.WHITE); // linhas verticais
-        plot.setRangeGridlinePaint(Color.WHITE);  // linhas horizontais
+        // Linhas da grade
+        plot.setDomainGridlinePaint(branco);
+        plot.setRangeGridlinePaint(branco);
 
-        // Linha do gráfico
-       plot.setDomainGridlinePaint(Color.WHITE);
-plot.setRangeGridlinePaint(Color.WHITE);
-chart.getTitle().setPaint(Color.WHITE);
-plot.getDomainAxis().setLabelPaint(Color.WHITE);
-plot.getDomainAxis().setTickLabelPaint(Color.WHITE);
-plot.getRangeAxis().setLabelPaint(Color.WHITE);
-plot.getRangeAxis().setTickLabelPaint(Color.WHITE);
+        // === Cor da linha do gráfico ===
+        LineAndShapeRenderer renderer = (LineAndShapeRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, branco); // linha branca
+        renderer.setDefaultShapesVisible(true); // mostrar pontos
+        renderer.setDefaultShapesFilled(true);
 
-        // Texto dos eixos
-        plot.getDomainAxis().setLabelPaint(Color.WHITE);
-        plot.getDomainAxis().setTickLabelPaint(Color.WHITE);
-        plot.getRangeAxis().setLabelPaint(Color.WHITE);
-        plot.getRangeAxis().setTickLabelPaint(Color.WHITE);
+        // === Texto e eixos ===
+        chart.getTitle().setPaint(branco);
+        plot.getDomainAxis().setLabelPaint(branco);
+        plot.getDomainAxis().setTickLabelPaint(branco);
+        plot.getRangeAxis().setLabelPaint(branco);
+        plot.getRangeAxis().setTickLabelPaint(branco);
 
-        // Título
-        chart.getTitle().setPaint(Color.WHITE);
-
-        
-        
-        
-        
-        
-
+        // === Painel ===
         ChartPanel painel = new ChartPanel(chart);
-        setLayout(new java.awt.BorderLayout());
-        add(painel, java.awt.BorderLayout.CENTER);
+        setLayout(new BorderLayout());
+        add(painel, BorderLayout.CENTER);
     }
 }

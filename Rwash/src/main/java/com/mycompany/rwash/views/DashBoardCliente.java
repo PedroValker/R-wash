@@ -32,7 +32,7 @@ public class DashBoardCliente extends javax.swing.JFrame {
         ArrayList<Double> consumoAgua = new ArrayList<>();
         ArrayList<Double> consumoEnergia = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aluno\\Downloads\\R-Wash\\R-wash\\Rwash\\src\\main\\java\\com\\mycompany\\rwash\\views\\dados.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aluno\\Documents\\NetBeansProjects\\R-Wash\\R-wash\\Rwash\\src\\main\\java\\com\\mycompany\\rwash\\views\\dados.csv"))) {
             String linha = br.readLine(); 
             while ((linha = br.readLine()) != null) {
                 String[] partes = linha.split(",");

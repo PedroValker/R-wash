@@ -2,6 +2,7 @@ com\mycompany\rwash\views\TelaCadastro$3.class
 com\mycompany\rwash\views\TelaLogin$3.class
 com\mycompany\rwash\views\TelaCadastroEndereço$5.class
 com\mycompany\rwash\views\PainelCliente$3.class
+com\mycompany\rwash\views\PainelClienteNãoLogado.class
 com\mycompany\rwash\views\TelaPrincipal$2.class
 com\mycompany\rwash\views\PainelGrafico.class
 com\mycompany\rwash\views\TelaLogin.class
@@ -10,7 +11,6 @@ com\mycompany\rwash\Model\Usuario.class
 com\mycompany\rwash\views\TelaCadastroMaquina$5.class
 com\mycompany\rwash\views\TelaCadastroEndereço$6.class
 com\mycompany\rwash\views\TelaCadastroMaquina$3.class
-com\mycompany\rwash\views\TelaCadastroEndereço$8.class
 com\mycompany\rwash\views\PainelCliente$1.class
 com\mycompany\rwash\views\DashBoardCliente$1.class
 com\mycompany\rwash\views\TelaLogin$2.class
@@ -21,13 +21,17 @@ com\mycompany\rwash\views\TelaPrincipal$3.class
 com\mycompany\rwash\views\TelaCadastroEndereço$2.class
 com\mycompany\rwash\views\DashBoardCliente.class
 com\mycompany\rwash\views\TelaLogin$5.class
+com\mycompany\rwash\views\PainelClienteNãoLogado$3.class
 com\mycompany\rwash\views\jLabelNomeCliente.class
 com\mycompany\rwash\views\TelaCadastroMaquina$6.class
+com\mycompany\rwash\views\PainelClienteNãoLogado$1.class
 com\mycompany\rwash\views\TelaCadastroMaquina$2.class
 com\mycompany\rwash\views\TelaLogin$1.class
+com\mycompany\rwash\views\PainelClienteNãoLogado$4.class
 com\mycompany\rwash\views\TelaCadastroEndereço$3.class
 com\mycompany\rwash\views\TelaCadastro$1.class
 com\mycompany\rwash\views\TelaPrincipal.class
+com\mycompany\rwash\views\PainelClienteNãoLogado$2.class
 com\mycompany\rwash\views\TelaCadastroEndereço$1.class
 com\mycompany\rwash\views\TelaCadastro$4.class
 com\mycompany\rwash\views\TelaPrincipal$4.class
