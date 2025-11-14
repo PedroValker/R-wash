@@ -4,8 +4,9 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.DAO.MaquinaDAO;
 import com.mycompany.rwash.DAO.UsuarioDAO;
-import com.mycompany.rwash.Model.Usuario;
+import com.mycompany.rwash.Model.Maquina;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -15,18 +16,26 @@ import javax.swing.plaf.basic.BasicButtonUI;
  * @author luizg
  */
 public class TelaCadastroMaquina extends javax.swing.JFrame {
+Maquina objAlterar = null;
 
     /**
      * Creates new form TelaCompraProduto
      */
+  
+
+    private int clienteIdLogado;
     public TelaCadastroMaquina() {
-        initComponents();
-        JButton[] btns={btnCadastroMaquina,btnProsseguir};
-        for(JButton btn:btns){
-            btn.setUI(new BasicButtonUI());
-        }
-        this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+    initComponents();
+    System.out.println("Tela aberta — Cliente logado: " + UsuarioDAO.idClienteLogado);
+
+    JButton[] btns = { btnCadastroMaquina, btnProsseguir };
+    for (JButton btn : btns) {
+        btn.setUI(new BasicButtonUI());
     }
+
+    this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -253,10 +262,45 @@ public class TelaCadastroMaquina extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCapacidadeCargaActionPerformed
 
     private void btnCadastroMaquinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroMaquinaActionPerformed
+  
+        
+        System.out.println(">>> ID CLIENTE LOGADO = " + UsuarioDAO.idClienteLogado);
 
-  setVisible(false);
+    String modelo = txtModeloMaquina.getText().trim();
+    String capacidade = txtCapacidadeCarga.getText().trim();
+    String turbidez = txtEficienciaEnergetica.getText().trim();
+
+    // Validação simples
+    if (modelo.isEmpty() || capacidade.isEmpty() || turbidez.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // Cria o objeto Máquina (AGORA NA ORDEM CERTA)
+    Maquina novoMaquina = new Maquina();
+    novoMaquina.setModeloMaquina(modelo);
+    novoMaquina.setCapacidadeMaquina(capacidade);
+    novoMaquina.setTurbidezMaquina(turbidez);
+
+    // ASSOCIA O CLIENTE LOGADO AUTOMATICAMENTE
+    novoMaquina.setCliente_idCliente(UsuarioDAO.idClienteLogado);
+
+    // Tenta salvar no banco
+    boolean sucesso = MaquinaDAO.salvar(novoMaquina);
+
+    if (sucesso) {
+        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+        this.dispose();
+
+        // Vai para a tela de endereço
         TelaCadastroEndereço janela = new TelaCadastroEndereço();
         janela.setVisible(true);
+
+    } else {
+        JOptionPane.showMessageDialog(this, "Erro ao cadastrar! Verifique o console para mais detalhes.", "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
     }//GEN-LAST:event_btnCadastroMaquinaActionPerformed
 
     private void btnProsseguirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProsseguirActionPerformed

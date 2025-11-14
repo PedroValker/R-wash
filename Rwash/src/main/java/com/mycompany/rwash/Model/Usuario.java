@@ -10,8 +10,26 @@ public class Usuario {
 
     // Construtores
     public Usuario() {
+        
+        
     }
 
+    public void setModeloMaquina(String modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void setTurbidezMaquina(String eficiencia) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void getCapacidadeMaquina(String capacidade) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+public class Sessao {
+        public static int idClienteLogado;
+    }
+
+    
     public Usuario(String nomeCliente, String emailCliente, String senhaCliente) {
         this.nomeCliente = nomeCliente;
         this.emailCliente = emailCliente;

@@ -6,6 +6,8 @@ package com.mycompany.rwash.views;
 import javax.swing.JFrame;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 /**
@@ -32,19 +34,23 @@ public class DashBoardCliente extends javax.swing.JFrame {
         ArrayList<Double> consumoAgua = new ArrayList<>();
         ArrayList<Double> consumoEnergia = new ArrayList<>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\aluno\\Documents\\NetBeansProjects\\R-Wash\\R-wash\\Rwash\\src\\main\\java\\com\\mycompany\\rwash\\views\\dados.csv"))) {
-            String linha = br.readLine(); 
-            while ((linha = br.readLine()) != null) {
-                String[] partes = linha.split(",");
-                datas.add(partes[0]);
-                turbidez.add(Double.parseDouble(partes[1]));
-                temperatura.add(Double.parseDouble(partes[2]));
-                consumoAgua.add(Double.parseDouble(partes[3]));
-                consumoEnergia.add(Double.parseDouble(partes[4]));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        try (InputStream input = getClass().getResourceAsStream("/dados.csv");
+       BufferedReader br = new BufferedReader(new InputStreamReader(input))) {
+
+      String linha = br.readLine(); // lê cabeçalho (se tiver)
+
+      while ((linha = br.readLine()) != null) {
+          String[] partes = linha.split(",");
+          datas.add(partes[0]);
+          turbidez.add(Double.parseDouble(partes[1]));
+          temperatura.add(Double.parseDouble(partes[2]));
+          consumoAgua.add(Double.parseDouble(partes[3]));
+          consumoEnergia.add(Double.parseDouble(partes[4]));
+      }
+
+  } catch (Exception e) {
+      e.printStackTrace();
+}
 
         String[] categorias = datas.toArray(new String[0]);
         double[] vTurbidez = turbidez.stream().mapToDouble(Double::doubleValue).toArray();

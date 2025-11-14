@@ -7,6 +7,7 @@ com\mycompany\rwash\views\TelaPrincipal$2.class
 com\mycompany\rwash\views\PainelGrafico.class
 com\mycompany\rwash\views\TelaLogin.class
 com\mycompany\rwash\views\TelaCadastro$6.class
+com\mycompany\rwash\Model\Usuario$Sessao.class
 com\mycompany\rwash\Model\Usuario.class
 com\mycompany\rwash\views\TelaCadastroMaquina$5.class
 com\mycompany\rwash\views\TelaCadastroEndereço$6.class
@@ -14,7 +15,9 @@ com\mycompany\rwash\views\TelaCadastroMaquina$3.class
 com\mycompany\rwash\views\PainelCliente$1.class
 com\mycompany\rwash\views\DashBoardCliente$1.class
 com\mycompany\rwash\views\TelaLogin$2.class
+com\mycompany\rwash\DAO\MaquinaDAO.class
 com\mycompany\rwash\views\PainelCliente$4.class
+com\mycompany\rwash\Model\Maquina.class
 com\mycompany\rwash\views\TelaCadastro$2.class
 com\mycompany\rwash\views\TelaCadastro$5.class
 com\mycompany\rwash\views\TelaPrincipal$3.class

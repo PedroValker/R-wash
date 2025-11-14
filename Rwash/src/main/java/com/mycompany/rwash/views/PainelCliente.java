@@ -6,6 +6,7 @@ package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
+import com.mycompany.rwash.Model.Usuario.Sessao;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -292,9 +293,14 @@ public class PainelCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdquirirProduto2ActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
-          setVisible(false);
-        TelaLogin janela = new TelaLogin();
-        janela.setVisible(true);
+        // Limpar dados do cliente logado
+    Sessao.idClienteLogado = 0;
+    // Fechar completamente o dashboard
+    dispose();
+
+    // Abrir o login novamente
+    TelaLogin login = new TelaLogin();
+    login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
@@ -358,5 +364,7 @@ public class PainelCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
+    }
+
     
-}
+

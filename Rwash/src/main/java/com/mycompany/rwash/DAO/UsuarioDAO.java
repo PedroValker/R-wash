@@ -10,6 +10,12 @@ public class UsuarioDAO {
     private static final String LOGIN = "root";
     private static final String SENHA = "7777";
 
+    // Armazena o ID do cliente logado
+    public static int idClienteLogado = 0;
+
+    // ============================================
+    //  CONEXÃO COM O BANCO
+    // ============================================
     private static Connection getConexao() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -20,6 +26,9 @@ public class UsuarioDAO {
         }
     }
 
+    // ============================================
+    //  GERAR HASH SHA-256
+    // ============================================
     public static String gerarHash(String senha) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -33,10 +42,13 @@ public class UsuarioDAO {
         }
     }
 
-    // --- LOGIN ---
+    // ============================================
+    //  LOGIN
+    // ============================================
     public static int autenticar(String email, String senha) {
-        int idCliente = 0;
         String sql = "SELECT idCliente FROM cliente WHERE emailCliente = ? AND senhaCliente = ?";
+        int idCliente = 0;
+
         try (Connection con = getConexao();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
@@ -44,68 +56,75 @@ public class UsuarioDAO {
             stmt.setString(2, gerarHash(senha));
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) idCliente = rs.getInt("idCliente");
+            if (rs.next()) {
+                idCliente = rs.getInt("idCliente");
+                idClienteLogado = idCliente;   // salva o ID logado
+                System.out.println("Cliente logado: " + idClienteLogado);
+            } else {
+                idClienteLogado = 0;  // login falhou
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return idCliente;
     }
 
-    // --- CADASTRO ---
-  public static boolean salvar(Usuario obj) {
-    boolean retorno = false;
-    Connection conexao = null;
+    // ============================================
+    //  CADASTRO
+    // ============================================
+    public static boolean salvar(Usuario obj) {
+        boolean retorno = false;
+        Connection conexao = null;
 
-    try {
-        conexao = getConexao();
-        if (conexao == null) {
-            System.out.println("❌ Falha ao obter conexão com o banco!");
-            return false;
-        }
-
-        String sql = "INSERT INTO cliente (nomeCliente, emailCliente, senhaCliente) VALUES (?, ?, ?)";
-        PreparedStatement stmt = conexao.prepareStatement(sql);
-        stmt.setString(1, obj.getNomeCliente());
-        stmt.setString(2, obj.getEmailCliente());
-        stmt.setString(3, gerarHash(obj.getSenhaCliente()));
-
-        int linhasAfetadas = stmt.executeUpdate();
-
-        if (linhasAfetadas > 0) {
-            retorno = true;
-            System.out.println("✅ Cliente cadastrado com sucesso!");
-        } else {
-            System.out.println("⚠️ Nenhuma linha afetada — nada foi inserido!");
-        }
-
-        stmt.close();
-    } catch (SQLException e) {
-        System.out.println("❌ Erro SQL ao salvar cliente: " + e.getMessage());
-        e.printStackTrace();
-    } finally {
-        if (conexao != null) {
-            try {
-                conexao.close();
-            } catch (SQLException ex) {
-                System.out.println("Erro ao fechar conexão: " + ex.getMessage());
-                ex.printStackTrace();
+        try {
+            conexao = getConexao();
+            if (conexao == null) {
+                System.out.println("❌ Falha ao obter conexão com o banco!");
+                return false;
             }
+
+            String sql = "INSERT INTO cliente (nomeCliente, emailCliente, senhaCliente) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            stmt.setString(1, obj.getNomeCliente());
+            stmt.setString(2, obj.getEmailCliente());
+            stmt.setString(3, gerarHash(obj.getSenhaCliente()));
+
+            int linhasAfetadas = stmt.executeUpdate();
+            retorno = linhasAfetadas > 0;
+
+            if (retorno)
+                System.out.println("✅ Cliente cadastrado com sucesso!");
+            else
+                System.out.println("⚠️ Nenhuma linha afetada — nada foi inserido!");
+
+            stmt.close();
+
+        } catch (SQLException e) {
+            System.out.println("❌ Erro SQL ao salvar cliente: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try { if (conexao != null) conexao.close(); } catch (SQLException ex) { ex.printStackTrace(); }
         }
+
+        return retorno;
     }
 
-    return retorno;
-}
-
-
-    // --- BUSCA POR ID ---
+    // ============================================
+    //  BUSCAR POR ID
+    // ============================================
     public static Usuario buscarPorId(int idCliente) {
         Usuario usuario = null;
         String sql = "SELECT * FROM cliente WHERE idCliente = ?";
+
         try (Connection con = getConexao();
              PreparedStatement stmt = con.prepareStatement(sql)) {
 
             stmt.setInt(1, idCliente);
             ResultSet rs = stmt.executeQuery();
+
             if (rs.next()) {
                 usuario = new Usuario();
                 usuario.setIdCliente(rs.getInt("idCliente"));
@@ -113,17 +132,20 @@ public class UsuarioDAO {
                 usuario.setEmailCliente(rs.getString("emailCliente"));
                 usuario.setSenhaCliente(rs.getString("senhaCliente"));
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return usuario;
     }
 
-    // --- VERIFICAÇÃO DE COMPRA ---
+    // ============================================
+    //  VERIFICAR SE CLIENTE JÁ COMPROU
+    // ============================================
     public static boolean clienteJaComprou(int idCliente) {
         boolean comprou = false;
-        String sql = "SELECT COUNT(*) FROM compra WHERE idCliente = ? AND statusCompra = TRUE"; 
-        // ⚠️ verifique se o nome da tabela é 'compra' (singular) e o campo é 'status_compra'
+        String sql = "SELECT COUNT(*) FROM cliente WHERE idCliente = ? AND statusCompra = 1";
 
         try (Connection con = getConexao();
              PreparedStatement stmt = con.prepareStatement(sql)) {
@@ -131,10 +153,15 @@ public class UsuarioDAO {
             stmt.setInt(1, idCliente);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) comprou = rs.getInt(1) > 0;
+            if (rs.next()) {
+                comprou = rs.getInt(1) > 0;
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return comprou;
     }
+
 }
