@@ -26,10 +26,11 @@ CREATE TABLE `cliente` (
   `idCliente` int NOT NULL AUTO_INCREMENT,
   `nomeCliente` varchar(45) NOT NULL,
   `emailCliente` varchar(45) NOT NULL,
-  `cpfCliente` varchar(45) DEFAULT NULL,
+  `cpfCliente` varchar(12) DEFAULT NULL,
   `senhaCliente` varchar(255) NOT NULL,
+  `statusCompra` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,42 +39,34 @@ CREATE TABLE `cliente` (
 
 LOCK TABLES `cliente` WRITE;
 /*!40000 ALTER TABLE `cliente` DISABLE KEYS */;
-INSERT INTO `cliente` VALUES (1,'teste','teste@email.com',NULL,'123'),(2,'teste','teste@teste',NULL,'123'),(3,'Gustavo','Gustavo@gmail',NULL,'1234'),(4,'PEdro Vicente','Pedroteste@gmail',NULL,'12345'),(5,'ricarod','ricardo@gmail',NULL,'4321'),(6,'kevyn','kevy@gmail',NULL,'8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),(7,'vicente','vicente@gmail',NULL,'51e3434f6d0956a0873c73f1d3eba0901c8a2b30ab584ca00d6d974d5e8a3ca8');
 /*!40000 ALTER TABLE `cliente` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `compra`
+-- Table structure for table `endereco`
 --
 
-DROP TABLE IF EXISTS `compra`;
+DROP TABLE IF EXISTS `endereco`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `compra` (
-  `idCompra` int NOT NULL AUTO_INCREMENT,
-  `idCliente` int NOT NULL,
-  `idMaquina` int NOT NULL,
-  `dataCompra` datetime DEFAULT CURRENT_TIMESTAMP,
-  `statusCompra` enum('pendente','concluida','cancelada') DEFAULT NULL,
-  `enderecoCliente` varchar(45) NOT NULL,
-  `bairroCliente` varchar(45) NOT NULL,
-  `cepCliente` varchar(45) NOT NULL,
-  PRIMARY KEY (`idCompra`),
-  KEY `compra_ibfk_1` (`idCliente`),
-  KEY `compra_ibfk_2` (`idMaquina`),
-  CONSTRAINT `compra_ibfk_1` FOREIGN KEY (`idCliente`) REFERENCES `cliente` (`idCliente`),
-  CONSTRAINT `compra_ibfk_2` FOREIGN KEY (`idMaquina`) REFERENCES `maquina` (`idMaquina`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `endereco` (
+  `idEndereco` int NOT NULL AUTO_INCREMENT,
+  `CEP` varchar(11) NOT NULL,
+  `bairro` varchar(45) NOT NULL,
+  `rua` varchar(45) NOT NULL,
+  `cliente_idCliente` int NOT NULL,
+  PRIMARY KEY (`idEndereco`),
+  KEY `fk_endereco_cliente1_idx` (`cliente_idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `compra`
+-- Dumping data for table `endereco`
 --
 
-LOCK TABLES `compra` WRITE;
-/*!40000 ALTER TABLE `compra` DISABLE KEYS */;
-INSERT INTO `compra` VALUES (2,7,1,'2025-11-10 00:00:00','pendente','1','teste','teste');
-/*!40000 ALTER TABLE `compra` ENABLE KEYS */;
+LOCK TABLES `endereco` WRITE;
+/*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+/*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -84,7 +77,7 @@ DROP TABLE IF EXISTS `maquina`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `maquina` (
-  `idMaquina` int NOT NULL,
+  `idMaquina` int NOT NULL AUTO_INCREMENT,
   `modeloMaquina` varchar(45) NOT NULL,
   `turbidezMaquina` varchar(45) NOT NULL,
   `capacidadeMaquina` varchar(45) NOT NULL,
@@ -101,7 +94,6 @@ CREATE TABLE `maquina` (
 
 LOCK TABLES `maquina` WRITE;
 /*!40000 ALTER TABLE `maquina` DISABLE KEYS */;
-INSERT INTO `maquina` VALUES (1,'teste','teeste','2',0);
 /*!40000 ALTER TABLE `maquina` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -145,4 +137,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-11-04 17:52:55
+-- Dump completed on 2025-11-20 19:45:56

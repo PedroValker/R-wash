@@ -4,9 +4,14 @@
  */
 package com.mycompany.rwash.views;
 
+import com.mycompany.rwash.DAO.EnderecoDAO;
+import com.mycompany.rwash.DAO.UsuarioDAO;
+import static com.mycompany.rwash.DAO.UsuarioDAO.idClienteLogado;
+import com.mycompany.rwash.Model.Endereco;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
 import com.mycompany.rwash.views.DashBoardCliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,7 +50,6 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
         txtCEP = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCPF = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         btnCadastroEndereço = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -55,8 +59,6 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         txtRua = new javax.swing.JTextField();
         txtBairro = new javax.swing.JTextField();
-        jSeparator4 = new javax.swing.JSeparator();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,7 +68,7 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 0, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 50, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("COMPRA");
+        jLabel1.setText("Endereço");
         jLabel1.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
@@ -76,9 +78,9 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(640, Short.MAX_VALUE)
+                .addContainerGap(642, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(641, Short.MAX_VALUE))
+                .addContainerGap(642, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,13 +115,6 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel3.setText("Bairro");
-
-        txtCPF.setBorder(null);
-        txtCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCPFActionPerformed(evt);
-            }
-        });
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel4.setText("Rua");
@@ -169,12 +164,6 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
             }
         });
 
-        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        jLabel7.setText("CPF");
-
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -200,10 +189,7 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
                             .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -227,13 +213,7 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
                 .addComponent(txtRua, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel7)
-                .addGap(0, 0, 0)
-                .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(0, 0, 0)
                 .addComponent(btnProsseguir)
@@ -248,7 +228,7 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 915, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1491, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -292,15 +272,46 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProsseguirActionPerformed
 
     private void btnCadastroEndereçoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroEndereçoActionPerformed
-        setVisible(false);
-        int idClienteLogado = 0;
-        DashBoardCliente janela = new DashBoardCliente(idClienteLogado);
-        janela.setVisible(true);
-    }//GEN-LAST:event_btnCadastroEndereçoActionPerformed
+        
+        
+        String bairro = txtBairro.getText().trim();
+        String cep = txtCEP.getText().trim();
+        String rua = txtRua.getText().trim();
 
-    private void txtCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCPFActionPerformed
+        if (bairro.isEmpty() || cep.isEmpty() || rua.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Cria o objeto Endereco
+        Endereco novoEndereco = new Endereco();
+        novoEndereco.setBairro(bairro);
+        novoEndereco.setCEP(cep);
+        novoEndereco.setRua(rua);
+
+        // ASSOCIA O CLIENTE LOGADO AUTOMATICAMENTE (se existir essa relação)
+        novoEndereco.setCliente_idCliente(UsuarioDAO.idClienteLogado);
+
+        // Tenta salvar no banco
+        boolean sucesso = EnderecoDAO.salvarEndereco(novoEndereco);
+
+            if (sucesso) {
+
+            // ATUALIZA STATUSCOMPRA = 1
+            EnderecoDAO.atualizarStatusCompra(UsuarioDAO.idClienteLogado);
+
+            JOptionPane.showMessageDialog(this, "Endereço cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            this.dispose();
+
+            DashBoardCliente dashboard = new DashBoardCliente(UsuarioDAO.idClienteLogado);
+            dashboard.setVisible(true);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar! Verifique o console para mais detalhes.", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btnCadastroEndereçoActionPerformed
 
     private void txtCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCEPActionPerformed
         // TODO add your handling code here:
@@ -349,7 +360,6 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -359,10 +369,8 @@ public class TelaCadastroEndereço extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTextField txtBairro;
     private javax.swing.JTextField txtCEP;
-    private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtRua;
     // End of variables declaration//GEN-END:variables
 }

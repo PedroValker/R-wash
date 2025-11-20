@@ -60,9 +60,9 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace pref="640" max="32767" attributes="0"/>
+                      <EmptySpace pref="642" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="641" max="32767" attributes="0"/>
+                      <EmptySpace pref="642" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -89,7 +89,7 @@
                   <Color blue="ff" green="32" red="99" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="COMPRA"/>
+                <Property name="text" type="java.lang.String" value="Endere&#xe7;o"/>
                 <Property name="verticalAlignment" type="int" value="3"/>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
                 <Property name="verticalTextPosition" type="int" value="1"/>
@@ -102,7 +102,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel4" alignment="1" pref="915" max="32767" attributes="0"/>
+                  <Component id="jPanel4" alignment="1" pref="1491" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -192,9 +192,6 @@
                                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="txtRua" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                           <Component id="jSeparator3" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCPF" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
-                                          <Component id="jSeparator4" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -223,13 +220,7 @@
                               <Component id="txtRua" min="-2" pref="24" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="jSeparator3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="txtCPF" min="-2" pref="24" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="jSeparator4" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="30" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="btnProsseguir" min="-2" max="-2" attributes="0"/>
@@ -266,16 +257,6 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="Bairro"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="txtCPF">
-                      <Properties>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="null"/>
-                        </Property>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCPFActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
@@ -375,24 +356,6 @@
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBairroActionPerformed"/>
                       </Events>
-                    </Component>
-                    <Component class="javax.swing.JSeparator" name="jSeparator4">
-                      <Properties>
-                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                          <Color blue="0" green="0" red="0" type="rgb"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel7">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Arial" size="18" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="CPF"/>
-                      </Properties>
                     </Component>
                   </SubComponents>
                 </Container>

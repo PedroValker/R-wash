@@ -246,10 +246,6 @@ import javax.swing.plaf.basic.BasicButtonUI;
             JOptionPane.ERROR_MESSAGE);
     
 }
-
-    
-    
-    
     
     }//GEN-LAST:event_btnLoginActionPerformed
 
