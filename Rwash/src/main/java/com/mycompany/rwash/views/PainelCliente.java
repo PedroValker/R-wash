@@ -299,7 +299,7 @@ public class PainelCliente extends javax.swing.JFrame {
     dispose();
 
     // Abrir o login novamente
-    TelaLogin login = new TelaLogin();
+    TelaLoginAntigo login = new TelaLoginAntigo();
     login.setVisible(true);
     }//GEN-LAST:event_btnLogoutActionPerformed
 

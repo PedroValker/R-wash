@@ -293,13 +293,13 @@ public class PainelClienteNãoLogado extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
           setVisible(false);
-        TelaLogin janela = new TelaLogin();
+        TelaLoginAntigo janela = new TelaLoginAntigo();
         janela.setVisible(true);
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
           setVisible(false);
-        TelaLogin janela = new TelaLogin();
+        TelaLoginAntigo janela = new TelaLoginAntigo();
         janela.setVisible(true);
     }//GEN-LAST:event_btnAdquirirProdutoActionPerformed
 
