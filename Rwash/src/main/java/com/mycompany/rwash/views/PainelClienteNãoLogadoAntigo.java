@@ -15,12 +15,12 @@ import javax.swing.plaf.basic.BasicButtonUI;
  *
  * @author aluno
  */
-public class PainelClienteNãoLogado extends javax.swing.JFrame {
+public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
 
     private int idCliente; // armazena o ID do cliente logado
 
     // Construtor padrão
-    public PainelClienteNãoLogado() {
+    public PainelClienteNãoLogadoAntigo() {
         initComponents();
                 JButton[] btns={btnLogin,btnAdquirirProduto,btnAdquirirProduto2};
         for(JButton btn:btns){
@@ -30,7 +30,7 @@ public class PainelClienteNãoLogado extends javax.swing.JFrame {
     }
 
     // Novo construtor que recebe o ID do cliente
-    public PainelClienteNãoLogado(int idClienteLogado) {
+    public PainelClienteNãoLogadoAntigo(int idClienteLogado) {
         this.idCliente = idClienteLogado;
         initComponents();
         // Aqui você pode carregar dados do cliente usando o ID
@@ -320,21 +320,23 @@ public class PainelClienteNãoLogado extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PainelClienteNãoLogado().setVisible(true);
+                new PainelClienteNãoLogadoAntigo().setVisible(true);
             }
         });
     }

@@ -11,24 +11,19 @@ public class TelaLogin extends JFrame {
 
     Usuario objAlterar = null;
 
-    // Mantendo os nomes originais
     private javax.swing.JButton btnEsquecerSenha;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnMudarTelaCadastrar;
-
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
-
     private javax.swing.JTextField txtEmailCliente;
     private javax.swing.JPasswordField txtSenhaCliente;
 
@@ -42,7 +37,7 @@ public class TelaLogin extends JFrame {
 
     private void initCustomUI() {
 
-        // Painel superior — TÍTULO
+        // Painel superior 
         jPanel4 = new GradientPanel();
         jPanel4.setPreferredSize(new Dimension(0, 150));
         jPanel4.setLayout(new BorderLayout());
@@ -53,18 +48,18 @@ public class TelaLogin extends JFrame {
 
         jPanel4.add(jLabel1, BorderLayout.CENTER);
 
-        // Painel central com gradiente
+        // Painel gradiente
         jPanel3 = new JPanel(new GridLayout(1, 1));
         jPanel1 = new GradientPanel();
         jPanel1.setLayout(new GridBagLayout());
 
-        // Painel do formulário branco (cartão)
+        // Painel branco 
         jPanel2 = new JPanel();
         jPanel2.setPreferredSize(new Dimension(380, 420));
         jPanel2.setBackground(Color.WHITE);
         jPanel2.setLayout(null);
 
-        // “Email”
+        // Email
         jLabel3 = new JLabel("Email");
         jLabel3.setFont(new Font("Arial", Font.PLAIN, 16));
         jLabel3.setBounds(30, 40, 200, 22);
@@ -76,7 +71,7 @@ public class TelaLogin extends JFrame {
         jSeparator1 = new JSeparator();
         jSeparator1.setBounds(30, 93, 300, 1);
 
-        // “Senha”
+        // Senha
         jLabel4 = new JLabel("Senha");
         jLabel4.setFont(new Font("Arial", Font.PLAIN, 16));
         jLabel4.setBounds(30, 125, 200, 22);
@@ -97,7 +92,7 @@ public class TelaLogin extends JFrame {
         btnEsquecerSenha.setForeground(new Color(120, 120, 120));
         btnEsquecerSenha.setFocusPainted(false);
 
-        // “Não tem conta?”
+        // Não tem conta?
         jLabel2 = new JLabel("Não tem uma conta?");
         jLabel2.setFont(new Font("Arial", Font.PLAIN, 14));
         jLabel2.setBounds(75, 250, 150, 25);
@@ -110,7 +105,7 @@ public class TelaLogin extends JFrame {
         btnMudarTelaCadastrar.setBounds(220, 250, 120, 25);
         btnMudarTelaCadastrar.addActionListener((e) -> abrirCadastro());
 
-        // Botão LOGIN arredondado
+        // Botão LOGIN 
         btnLogin = new RoundedButton("LOGIN");
         btnLogin.setBounds(75, 290, 230, 50);
         btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
@@ -159,7 +154,7 @@ public class TelaLogin extends JFrame {
         boolean jaComprou = UsuarioDAO.clienteJaComprou(idClienteLogado);
 
         if (jaComprou) {
-        // Cliente ainda não comprou → vai para a tela de compra
+        // Cliente ainda não comprou, vai para a tela de compra
         DashBoardCliente dashboard = new DashBoardCliente(idClienteLogado);
         dashboard.setVisible(true);
         

@@ -28,12 +28,11 @@ public class TelaPrincipal extends JFrame {
 
     private void initCustomComponents() {
 
-        // HEADER (DOIS LADOS)
 headerPanel = new GradientPanel();
 headerPanel.setLayout(new BorderLayout());
 headerPanel.setPreferredSize(new Dimension(0, 90));
 
-// Lado ESQUERDO (R-Wash)
+// (R-Wash)
 JPanel headerLeft = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 20));
 headerLeft.setOpaque(false);
 
@@ -43,7 +42,7 @@ jLabel5.setForeground(java.awt.Color.WHITE);
 
 headerLeft.add(jLabel5);
 
-// Lado DIREITO (Login + Cadastro)
+// Login + Cadastro
 JPanel headerRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 20, 20));
 headerRight.setOpaque(false);
 
@@ -51,7 +50,6 @@ btnMudarTelaLogin = new RoundedButton("LOGIN");
 btnMudarTelaLogin.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 18));
 btnMudarTelaLogin.setPreferredSize(new Dimension(140, 40));
 btnMudarTelaLogin.addActionListener((ActionEvent e) -> abrirLogin());
-
 btnMudarTelaCadastro = new RoundedButton("CADASTRO");
 btnMudarTelaCadastro.setFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 18));
 btnMudarTelaCadastro.setPreferredSize(new Dimension(160, 40));
@@ -60,13 +58,11 @@ btnMudarTelaCadastro.addActionListener((ActionEvent e) -> abrirCadastro());
 headerRight.add(btnMudarTelaLogin);
 headerRight.add(btnMudarTelaCadastro);
 
-// Adiciona ao header final
 headerPanel.add(headerLeft, BorderLayout.WEST);
 headerPanel.add(headerRight, BorderLayout.EAST);
 
 // Separador
 headerPanel.add(new JSeparator(), BorderLayout.SOUTH);
-
 
         mainPanel = new GradientPanel();
         mainPanel.setLayout(null);
@@ -89,7 +85,7 @@ headerPanel.add(new JSeparator(), BorderLayout.SOUTH);
         btnSaibaMais = new RoundedButton("SAIBA MAIS");
         btnSaibaMais.setFont(new java.awt.Font("Arial", java.awt.Font.BOLD, 20));
         btnSaibaMais.setBounds(80, 370, 220, 55);
-        btnSaibaMais.addActionListener((ActionEvent e) -> abrirPainelCliente());
+        btnSaibaMais.addActionListener((ActionEvent e) -> abrirPainelClienteNaoLogado());
 
         jLabel4 = new JLabel();
         ImageIcon icon = new ImageIcon(getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg"));
@@ -119,9 +115,9 @@ headerPanel.add(new JSeparator(), BorderLayout.SOUTH);
         new TelaCadastroAntigo().setVisible(true);
     }
 
-    private void abrirPainelCliente() {
+    private void abrirPainelClienteNaoLogado() {
         this.setVisible(false);
-        new PainelCliente().setVisible(true);
+        new PainelClienteNaoLogado().setVisible(true);
     }
 
     public static void main(String[] args) {
