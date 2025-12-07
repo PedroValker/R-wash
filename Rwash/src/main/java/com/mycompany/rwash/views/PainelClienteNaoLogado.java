@@ -4,215 +4,308 @@ import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+/**
+ * PainelClienteNaoLogado - versão final ajustada
+ */
 public class PainelClienteNaoLogado extends JFrame {
 
     private int idCliente;
+    private JLabel tituloLabel;
+    private JButton btnTopoAdquirir;
+    private JButton btnTopoLogin;
+    private RoundedButton btnAdquirirPrincipal;
+    private JLabel imgLabel;
 
-    // =============== COMPONENTES ORIGINAIS ===============
-    private javax.swing.JButton btnAdquirirProduto;
-    private javax.swing.JButton btnAdquirirProduto2;
-    private javax.swing.JButton btnLogin;
-
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-
-    // ================== CONSTRUTORES ==================
     public PainelClienteNaoLogado() {
         initUI();
         setExtendedState(MAXIMIZED_BOTH);
     }
 
-    public PainelClienteNaoLogado(int idClienteLogado) {
-        this.idCliente = idClienteLogado;
+    public PainelClienteNaoLogado(int idCliente) {
+        this.idCliente = idCliente;
         initUI();
         carregarDadosCliente();
         setExtendedState(MAXIMIZED_BOTH);
     }
 
     private void carregarDadosCliente() {
-        Usuario cliente = UsuarioDAO.buscarPorId(idCliente);
-        if (cliente != null) {
-            jLabel5.setText("R-Wash | " + cliente.getNomeCliente());
+        Usuario u = UsuarioDAO.buscarPorId(idCliente);
+        if (u != null) {
+            tituloLabel.setText("R-Wash | " + u.getNomeCliente());
         }
     }
 
-    // ======================= UI COMPLETA =======================
-    private void initUI() {
+    // Animated underline
+    class AnimatedUnderline extends JComponent {
+        private Color current = new Color(153, 50, 255);
+        private final Color hover = Color.WHITE;
+        private final Color normal = new Color(153, 50, 255);
+        private Timer timer;
+        public AnimatedUnderline(JButton target) {
+            setOpaque(false);
+            setPreferredSize(new Dimension(100, 3));
+            target.addMouseListener(new MouseAdapter() {
+                @Override public void mouseEntered(MouseEvent e) { animateTo(hover); }
+                @Override public void mouseExited(MouseEvent e)  { animateTo(normal); }
+            });
+        }
+        private void animateTo(Color target) {
+            if (timer!=null && timer.isRunning()) timer.stop();
+            timer = new Timer(16, ev -> {
+                int r = step(current.getRed(), target.getRed());
+                int g = step(current.getGreen(), target.getGreen());
+                int b = step(current.getBlue(), target.getBlue());
+                current = new Color(r,g,b);
+                repaint();
+                if (r==target.getRed() && g==target.getGreen() && b==target.getBlue()) timer.stop();
+            });
+            timer.start();
+        }
+        private int step(int c, int t) {
+            if (c < t) return Math.min(c+12, t);
+            if (c > t) return Math.max(c-12, t);
+            return c;
+        }
+        @Override protected void paintComponent(Graphics g) {
+            g.setColor(current);
+            g.fillRect(0,0,getWidth(), getHeight());
+        }
+    }
 
+    private JPanel wrapHeaderButton(final JButton btn) {
+        JPanel wrapper = new JPanel(new BorderLayout());
+        wrapper.setOpaque(false);
+        JPanel center = new JPanel(new GridBagLayout());
+        center.setOpaque(false);
+        center.add(btn);
+        wrapper.add(center, BorderLayout.CENTER);
+
+        final AnimatedUnderline underline = new AnimatedUnderline(btn);
+        wrapper.addComponentListener(new ComponentAdapter() {
+            @Override public void componentResized(ComponentEvent e) {
+                underline.setPreferredSize(new Dimension(center.getWidth(), 3));
+                underline.revalidate();
+            }
+        });
+        wrapper.add(underline, BorderLayout.SOUTH);
+        return wrapper;
+    }
+
+    // Rounded CTA
+    public static class RoundedButton extends JButton {
+        public RoundedButton(String text) {
+            super(text);
+            setFocusPainted(false);
+            setBorderPainted(false);
+            setContentAreaFilled(false);
+            setForeground(Color.WHITE);
+            setFont(new Font("Arial", Font.BOLD, 20));
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(getBackground());
+            g2.fillRoundRect(0,0,getWidth(),getHeight(),28,28);
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
+
+    // Gradient background
+    class GradientPanel extends JPanel {
+        @Override protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            int w = getWidth(), h = getHeight();
+            GradientPaint gp = new GradientPaint(0,0,new Color(23,21,56), w, h, new Color(60,0,120));
+            g2.setPaint(gp);
+            g2.fillRect(0,0,w,h);
+        }
+    }
+
+    // Build UI
+    private void initUI() {
         setTitle("R-Wash");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
 
+        GradientPanel main = new GradientPanel();
+        main.setLayout(new BorderLayout(0,0));
+        setContentPane(main);
 
-        // ==============================
-        //        CABEÇALHO
-        // ==============================
-        jPanel2 = new JPanel();
-        jPanel2.setBackground(new Color(23, 21, 56));
-        jPanel2.setLayout(new BorderLayout());
+        // HEADER (transparent)
+        JPanel header = new JPanel(new BorderLayout());
+        header.setOpaque(false);
+        header.setBorder(new EmptyBorder(14,22,6,22));
 
-        // Lado esquerdo: LOGO
-        JPanel leftPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        leftPanel.setOpaque(false);
+        tituloLabel = new JLabel("R-Wash");
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 34));
+        tituloLabel.setForeground(Color.WHITE);
+        header.add(tituloLabel, BorderLayout.WEST);
 
-        jLabel5 = new JLabel("R-Wash");
-        jLabel5.setFont(new Font("Arial", Font.BOLD, 36));
-        jLabel5.setForeground(Color.WHITE);
-        leftPanel.add(jLabel5);
+        JPanel rightButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 22, 12));
+        rightButtons.setOpaque(false);
 
-        // Lado direito: BOTÕES
-        JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 25, 10));
-        rightPanel.setOpaque(false);
+        btnTopoAdquirir = new JButton("Adquira Agora");
+        styleHeaderButton(btnTopoAdquirir);
+        // remove any border look
+        btnTopoAdquirir.setBorderPainted(false);
+        btnTopoAdquirir.setOpaque(false);
+        btnTopoAdquirir.setFocusable(false);
+        btnTopoAdquirir.setPreferredSize(new Dimension(160,36));
 
-        btnAdquirirProduto2 = new JButton("Adquira Agora");
-        btnAdquirirProduto2.setForeground(new Color(153, 50, 255));
-        btnAdquirirProduto2.setFont(new Font("Arial", Font.BOLD, 22));
-        btnAdquirirProduto2.setBorder(null);
-        btnAdquirirProduto2.setContentAreaFilled(false);
-        btnAdquirirProduto2.addActionListener((e) -> abrirCadastro());
+        btnTopoLogin = new JButton("Login");
+        styleHeaderButton(btnTopoLogin);
+        btnTopoLogin.setBorderPainted(false);
+        btnTopoLogin.setOpaque(false);
+        btnTopoLogin.setFocusable(false);
+        btnTopoLogin.setPreferredSize(new Dimension(110,36));
 
-        jSeparator2 = new JSeparator(SwingConstants.VERTICAL);
-        jSeparator2.setPreferredSize(new Dimension(2, 30));
-        jSeparator2.setForeground(Color.WHITE);
+        rightButtons.add(wrapHeaderButton(btnTopoAdquirir));
+        rightButtons.add(Box.createHorizontalStrut(10));
+        rightButtons.add(wrapHeaderButton(btnTopoLogin));
 
-        btnLogin = new JButton("Login");
-        btnLogin.setForeground(new Color(153, 50, 255));
-        btnLogin.setFont(new Font("Arial", Font.BOLD, 22));
-        btnLogin.setBorder(null);
-        btnLogin.setContentAreaFilled(false);
-        btnLogin.addActionListener((e) -> abrirLogin());
+        header.add(rightButtons, BorderLayout.EAST);
 
-        rightPanel.add(btnAdquirirProduto2);
-        rightPanel.add(jSeparator2);
-        rightPanel.add(btnLogin);
+        // subtle separator under header
+        JSeparator headerLine = new JSeparator();
+        headerLine.setForeground(new Color(255,255,255,60));
+        JPanel headerWrap = new JPanel(new BorderLayout());
+        headerWrap.setOpaque(false);
+        headerWrap.add(header, BorderLayout.CENTER);
+        headerWrap.add(headerLine, BorderLayout.SOUTH);
+        main.add(headerWrap, BorderLayout.NORTH);
 
-        jPanel2.add(leftPanel, BorderLayout.WEST);
-        jPanel2.add(rightPanel, BorderLayout.EAST);
-
-        jSeparator1 = new JSeparator();
-        jSeparator1.setForeground(Color.WHITE);
-
-        JPanel topWrapper = new JPanel(new BorderLayout());
-        topWrapper.setBackground(new Color(23, 21, 56));
-        topWrapper.add(jPanel2, BorderLayout.CENTER);
-        topWrapper.add(jSeparator1, BorderLayout.SOUTH);
-
-        add(topWrapper, BorderLayout.NORTH);
-
-
-        // ==============================
-        //        CORPO DA TELA
-        // ==============================
-        jPanel4 = new GradientPanel();
-        jPanel4.setLayout(new GridBagLayout());
+        // CENTER content
+        JPanel center = new JPanel(new GridBagLayout());
+        center.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
 
+        // ---------------- LEFT: texto ----------------
+        String html =
+                "<html><div style='width:600px; font-family:Arial; line-height:1.18; text-align: justify;'>"
+                        + "<span style='font-size:30px; font-weight:bold; color:#9932FF;'>Transforme</span>"
+                        + "<span style='font-size:26px; color:#ffffff; margin-left:8px;'> sua rotina e economize água</span>"
+                        + "<br>"
+                        + "<span style='font-size:26px; color:#ffffff; margin-left:8px;'>de maneira simples e eficiente.</span>"
+                        + "<br>"
+                        + "<span style='font-size:26px; color:#ffffff;'>Ao se cadastrar, você começa a fazer a diferença hoje mesmo, contribuindo para</span>"
+                        + "<br>"
+                        + "<span style='font-size:26px; color:#ffffff;'>um planeta mais verde.</span>"
+                        + "<br>"
+                        + "<span style='font-size:26px; color:#ffffff;'>Não deixe para amanhã o que você pode</span>"
+                        + "<br>"
+                        + "<span style='font-size:26px; color:#ffffff;'>mudar agora!</span>"
+                        + "</div></html>";
 
-        // ============== BLOCO DE TEXTO CORRIGIDO ==============
-        JPanel textoPanel = new JPanel();
-        textoPanel.setOpaque(false);
-        textoPanel.setLayout(new BoxLayout(textoPanel, BoxLayout.Y_AXIS));
+        JLabel textBlock = new JLabel(html);
+        textBlock.setVerticalAlignment(SwingConstants.TOP);
 
-        JLabel t1 = new JLabel("Transforme");
-        JLabel t6 = new JLabel("sua rotina e economize água de");
-        JLabel t2 = new JLabel("maneira simples e eficiente. Ao se cadastrar,");
-        JLabel t3 = new JLabel("você começa a fazer a diferença hoje mesmo,");
-        JLabel t4 = new JLabel("contribuindo para um planeta mais verde. Não");
-        JLabel t5 = new JLabel("deixe para amanhã o que você pode mudar agora!");
+        JPanel leftPanel = new JPanel(new BorderLayout());
+        leftPanel.setOpaque(false);
+        // Ajustei as margens para dar mais espaço
+        leftPanel.setBorder(new EmptyBorder(30, 48, 30, 10)); 
+        leftPanel.add(textBlock, BorderLayout.NORTH);
 
-        t1.setFont(new Font("Arial", Font.BOLD, 34));
-        t1.setForeground(new Color(153, 50, 255));
+        // Botão ADQUIRA — mais baixo
+        btnAdquirirPrincipal = new RoundedButton("ADQUIRA AGORA");
+        btnAdquirirPrincipal.setBackground(new Color(153, 50, 255));
+        btnAdquirirPrincipal.setPreferredSize(new Dimension(300, 75)); // maior
+        btnAdquirirPrincipal.addActionListener(e -> {
+            setVisible(false);
+            // new TelaLogin().setVisible(true); // Certifique-se que TelaLogin existe ou comente
+        });
 
-        Font f = new Font("Arial", Font.PLAIN, 28);
-        t2.setFont(f); t3.setFont(f); t4.setFont(f); t5.setFont(f); t6.setFont(f);
-        t2.setForeground(Color.WHITE);
-        t3.setForeground(Color.WHITE);
-        t4.setForeground(Color.WHITE);
-        t5.setForeground(Color.WHITE);
-        t6.setForeground(Color.WHITE);
+        JPanel ctaHolder = new JPanel(new GridBagLayout());
+        ctaHolder.setOpaque(false);
+        ctaHolder.setBorder(new EmptyBorder(60, 0, 0, 0)); // <-- abaixado aqui!!!
+        ctaHolder.add(btnAdquirirPrincipal);
 
-        t1.setBorder(new EmptyBorder(0, 0, 5, 0));
-        t2.setBorder(new EmptyBorder(0, 0, 5, 0));
-        t3.setBorder(new EmptyBorder(0, 0, 5, 0));
-        t4.setBorder(new EmptyBorder(0, 0, 5, 0));
-        t6.setBorder(new EmptyBorder(0, 0, 5, 0));
+        leftPanel.add(ctaHolder, BorderLayout.SOUTH);
 
-        textoPanel.add(t1);
-        textoPanel.add(t6);
-        textoPanel.add(t2);
-        textoPanel.add(t3);
-        textoPanel.add(t4);
-        textoPanel.add(t5);
-        
-
+        // posicione na grid
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(0, 60, 0, 0);
-        jPanel4.add(textoPanel, gbc);
+        gbc.weightx = 0.6; // Levemente reduzido para dar mais espaço à direita
+        gbc.gridwidth = 1; // Ocupa 1 coluna
+        gbc.fill = GridBagConstraints.BOTH; // Preenche o espaço disponível
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        center.add(leftPanel, gbc);
 
+    // ---------------- RIGHT: imagem MAIOR ----------------
+imgLabel = new JLabel();
+imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // ===================== BOTÃO ADQUIRA =====================
-        btnAdquirirProduto = new JButton("ADQUIRA AGORA");
-        btnAdquirirProduto.setFont(new Font("Arial", Font.BOLD, 22));
-        btnAdquirirProduto.setBackground(new Color(153, 50, 255));
-        btnAdquirirProduto.setForeground(Color.WHITE);
-        btnAdquirirProduto.setFocusPainted(false);
-        btnAdquirirProduto.addActionListener((e) -> abrirCadastro());
+// 1. Tenta pegar o caminho da imagem (use o nome do arquivo que funcionava antes)
+java.net.URL imgUrl = getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg");
 
-        gbc.gridy++;
-        gbc.insets = new Insets(40, 60, 0, 0);
-        jPanel4.add(btnAdquirirProduto, gbc);
+// 2. Verifica se achou a imagem para não dar erro
+final ImageIcon original;
+if (imgUrl != null) {
+    original = new ImageIcon(imgUrl);
+} else {
+    // Se não achar, cria uma imagem vazia ou usa um placeholder para não travar
+    System.err.println("ERRO: Imagem não encontrada no caminho especificado.");
+    original = new ImageIcon(); 
+}
 
+// Lógica de redimensionamento
+center.addComponentListener(new ComponentAdapter() {
+    @Override
+    public void componentResized(ComponentEvent e) {
+        // Se a imagem não foi carregada (width <= 0), não faz nada para evitar erro
+        if (original.getIconWidth() <= 0) return;
 
-        // ===================== IMAGEM DA MÁQUINA =====================
-        jLabel4 = new JLabel(new ImageIcon(getClass().getResource(
-                "/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg"
-        )));
+        int totalW = center.getWidth();
+        if (totalW <= 0) return;
+
+        int targetW = (int) (totalW * 0.45); 
+        targetW = Math.max(300, Math.min(targetW, 520));
+
+        double ratio = (double) original.getIconHeight() / original.getIconWidth();
+        int targetH = (int) (targetW * ratio);
+
+        Image scaled = original.getImage().getScaledInstance(targetW, targetH, Image.SCALE_SMOOTH);
+        imgLabel.setIcon(new ImageIcon(scaled));
+    }
+});
+        JPanel rightPanel = new JPanel(new BorderLayout());
+        rightPanel.setOpaque(false);
+        // Ajustei as margens para a direita
+        rightPanel.setBorder(new EmptyBorder(30, 10, 100, 70)); 
+        rightPanel.add(imgLabel, BorderLayout.NORTH);
+
+        // Reset gbc para o painel da direita
+        gbc = new GridBagConstraints();
         gbc.gridx = 1;
         gbc.gridy = 0;
-        gbc.gridheight = 3;
-        gbc.insets = new Insets(50, 120, 0, 0);
-        gbc.anchor = GridBagConstraints.EAST;
-        jPanel4.add(jLabel4, gbc);
+        gbc.weightx = 0.4; // Aumentado para 40%
+        gbc.gridwidth = 1; // Ocupa 1 coluna
+        gbc.fill = GridBagConstraints.BOTH; // Preenche o espaço disponível
+        gbc.anchor = GridBagConstraints.NORTH;
+        // Adiciona margem à esquerda da imagem para garantir separação
+        gbc.insets = new Insets(0, 20, 0, 0); 
+        center.add(rightPanel, gbc);
 
-
-        add(jPanel4, BorderLayout.CENTER);
+        main.add(center, BorderLayout.CENTER);
 
         pack();
+        setVisible(true);
     }
 
-    // ======================== AÇÕES =========================
-    private void abrirLogin() {
-        setVisible(false);
-        new TelaLogin().setVisible(true);
+    private void styleHeaderButton(JButton b) {
+        b.setFont(new Font("Arial", Font.BOLD, 20));
+        b.setForeground(new Color(153,50,255));
+        b.setContentAreaFilled(false);
+        b.setBorder(new EmptyBorder(6,10,6,10));
+        b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    private void abrirCadastro() {
-        setVisible(false);
-        new TelaCadastro().setVisible(true);
-    }
-
-
-    // ======================== MAIN =========================
+    // main
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new PainelClienteNaoLogado().setVisible(true));
     }
