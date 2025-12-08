@@ -43,7 +43,6 @@ public class TelaCadastro extends JFrame {
         }
     }
 
-<<<<<<< HEAD
     // 2. Painel Translúcido (Card)
     class TranslucentPanel extends JPanel {
         @Override protected void paintComponent(Graphics g) {
@@ -285,67 +284,7 @@ public class TelaCadastro extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar. Verifique os dados ou tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
-=======
-    // -------------------------------
-    //   BACK-END
-    // -------------------------------
-    
-    private boolean validarEmail(String email) {
-    // Regex básica válida para emails comuns
-    String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
-    return email.matches(regex);
-  }
-    
-    private boolean validarCPF(String cpf) {
-        // Remove caracteres especiais caso o usuário digite com máscara
-        cpf = cpf.replaceAll("[^0-9]", "");
-
-        return cpf.length() == 11 && cpf.matches("\\d{11}");
->>>>>>> 91edeca91deeac40dcc0d492cc7678a17b36aa9e
     }
-
-
-   private void registrar() {
-
-    String nome = txtNomeCliente.getText().trim();
-    String email = txtEmailCliente.getText().trim();
-    String senha = new String(txtSenhaCliente.getPassword()).trim();
-    String cpf = txtCpfCliente.getText().trim();
-
-    if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || cpf.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Validação do e-mail
-    if (!validarEmail(email)) {
-        JOptionPane.showMessageDialog(this, "E-mail inválido! Digite um e-mail válido.", "Erro", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // Validação do CPF
-    if (!validarCPF(cpf)) {
-        JOptionPane.showMessageDialog(this, "CPF inválido! Digite um CPF com 11 números.", "Erro", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    Usuario novo = new Usuario();
-    novo.setNomeCliente(nome);
-    novo.setEmailCliente(email);
-    novo.setSenhaCliente(senha);
-    novo.setCpfCliente(cpf);
-
-    boolean sucesso = UsuarioDAO.salvar(novo);
-
-    if (sucesso) {
-        JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
-        this.dispose();
-        new TelaLogin().setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Erro ao cadastrar!", "Erro", JOptionPane.ERROR_MESSAGE);
-    }
-}
-
 
     private void abrirLogin() {
         setVisible(false);

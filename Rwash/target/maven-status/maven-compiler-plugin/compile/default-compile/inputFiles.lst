@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\EnderecoDAO.java
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\MaquinaDAO.java
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\UsuarioDAO.java
@@ -26,28 +25,3 @@ C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwa
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaLoginAntigo.java
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipal.java
 C:\Users\luizg\Downloads\Nova pasta\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipalAntigo.java
-=======
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\EnderecoDAO.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\MaquinaDAO.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\DAO\UsuarioDAO.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Model\Endereco.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Model\Maquina.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Model\Usuario.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\Rwash.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\DashBoardCliente.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\GradientPanel.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\jLabelNomeCliente.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\PainelCliente.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\PainelClienteNaoLogado.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\PainelClienteNãoLogadoAntigo.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\PainelGrafico.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\RoundedButton.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastro.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastroAntigo.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastroEndereço.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaCadastroMaquina.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaLogin.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaLoginAntigo.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipal.java
-C:\Users\pedro\OneDrive\Documentos\NetBeansProjects\R-wash\Rwash\src\main\java\com\mycompany\rwash\views\TelaPrincipalAntigo.java
->>>>>>> 91edeca91deeac40dcc0d492cc7678a17b36aa9e
