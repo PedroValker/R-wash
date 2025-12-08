@@ -3,184 +3,270 @@ package com.mycompany.rwash.views;
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
 
-import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.*;
 
 public class TelaCadastro extends JFrame {
 
-    Usuario objAlterar = null;
-
-    // Mantendo os nomes originais
-    private javax.swing.JButton btnCadastro;
-    private javax.swing.JButton btnMudarParaTelaLogin;
-
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabelNome;
-    private javax.swing.JLabel jLabelEmail;
-    private javax.swing.JLabel jLabelSenha;
-    private javax.swing.JLabel jLabelCPF;
-
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-
-    private javax.swing.JSeparator jSeparatorNome;
-    private javax.swing.JSeparator jSeparatorEmail;
-    private javax.swing.JSeparator jSeparatorSenha;
-    private javax.swing.JSeparator jSeparatorCPF;
-
-    private javax.swing.JTextField txtNomeCliente;
-    private javax.swing.JTextField txtEmailCliente;
-    private javax.swing.JPasswordField txtSenhaCliente;
-    private javax.swing.JTextField txtCpfCliente;
+    // Componentes
+    private JTextField txtNome;
+    private JTextField txtEmail;
+    private JPasswordField txtSenha;
+    private JTextField txtCPF;
+    
+    private RoundedButton btnCadastrar;
+    private JButton btnVoltarLogin;
 
     public TelaCadastro() {
-        initCustomUI();
-        setTitle("R-Wash - Cadastro");
+        initUI();
+        setTitle("R-Wash | Criar Conta");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
 
-    private void initCustomUI() {
+    // ==========================================
+    //       CLASSES DE DESIGN E ESTILO
+    // ==========================================
 
-        // Painel superior — TÍTULO (IGUAL AO LOGIN)
-        jPanel4 = new GradientPanel();
-        jPanel4.setPreferredSize(new Dimension(0, 150));
-        jPanel4.setLayout(new BorderLayout());
-
-        jLabel1 = new JLabel("CADASTRE-SE", SwingConstants.CENTER);
-        jLabel1.setFont(new Font("Arial", Font.BOLD, 48));
-        jLabel1.setForeground(new Color(153, 50, 255));
-
-        jPanel4.add(jLabel1, BorderLayout.CENTER);
-
-        // Painel central com gradiente
-        jPanel3 = new JPanel(new GridLayout(1, 1));
-        jPanel1 = new GradientPanel();
-        jPanel1.setLayout(new GridBagLayout());
-
-        // Painel BRANCO (card) — EXATAMENTE COMO NO LOGIN
-        jPanel2 = new JPanel();
-        jPanel2.setPreferredSize(new Dimension(380, 480));
-        jPanel2.setBackground(Color.WHITE);
-        jPanel2.setLayout(null);
-
-        // -------- CAMPOS DO CADASTRO (seguindo o login) ---------
-
-        // Nome
-        jLabelNome = new JLabel("Nome");
-        jLabelNome.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabelNome.setBounds(30, 30, 200, 22);
-
-        txtNomeCliente = new JTextField();
-        txtNomeCliente.setBounds(30, 55, 300, 28);
-        txtNomeCliente.setBorder(null);
-
-        jSeparatorNome = new JSeparator();
-        jSeparatorNome.setBounds(30, 83, 300, 1);
-
-        // Email
-        jLabelEmail = new JLabel("Email");
-        jLabelEmail.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabelEmail.setBounds(30, 110, 200, 22);
-
-        txtEmailCliente = new JTextField();
-        txtEmailCliente.setBounds(30, 135, 300, 28);
-        txtEmailCliente.setBorder(null);
-
-        jSeparatorEmail = new JSeparator();
-        jSeparatorEmail.setBounds(30, 163, 300, 1);
-
-        // Senha
-        jLabelSenha = new JLabel("Senha");
-        jLabelSenha.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabelSenha.setBounds(30, 190, 200, 22);
-
-        txtSenhaCliente = new JPasswordField();
-        txtSenhaCliente.setBounds(30, 215, 300, 28);
-        txtSenhaCliente.setBorder(null);
-
-        jSeparatorSenha = new JSeparator();
-        jSeparatorSenha.setBounds(30, 243, 300, 1);
-
-        // CPF
-        jLabelCPF = new JLabel("CPF");
-        jLabelCPF.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabelCPF.setBounds(30, 270, 200, 22);
-
-        txtCpfCliente = new JTextField();
-        txtCpfCliente.setBounds(30, 295, 300, 28);
-        txtCpfCliente.setBorder(null);
-
-        jSeparatorCPF = new JSeparator();
-        jSeparatorCPF.setBounds(30, 323, 300, 1);
-
-        // Texto “Já tem conta?”
-        jLabel2 = new JLabel("Já tem uma conta?");
-        jLabel2.setFont(new Font("Arial", Font.PLAIN, 14));
-        jLabel2.setBounds(85, 340, 150, 25);
-
-        // Botão LOGIN
-        btnMudarParaTelaLogin = new JButton("Login");
-        btnMudarParaTelaLogin.setBorder(null);
-        btnMudarParaTelaLogin.setContentAreaFilled(false);
-        btnMudarParaTelaLogin.setForeground(new Color(153, 50, 255));
-        btnMudarParaTelaLogin.setBounds(220, 340, 120, 25);
-        btnMudarParaTelaLogin.addActionListener((e) -> abrirLogin());
-
-        // Botão CADASTRO (arredondado, estilo login)
-        btnCadastro = new RoundedButton("CADASTRAR");
-        btnCadastro.setBounds(75, 380, 230, 50);
-        btnCadastro.setFont(new Font("Arial", Font.BOLD, 18));
-        btnCadastro.addActionListener((e) -> registrar());
-
-        // Adiciona tudo ao card branco
-        jPanel2.add(jLabelNome);
-        jPanel2.add(txtNomeCliente);
-        jPanel2.add(jSeparatorNome);
-
-        jPanel2.add(jLabelEmail);
-        jPanel2.add(txtEmailCliente);
-        jPanel2.add(jSeparatorEmail);
-
-        jPanel2.add(jLabelSenha);
-        jPanel2.add(txtSenhaCliente);
-        jPanel2.add(jSeparatorSenha);
-
-        jPanel2.add(jLabelCPF);
-        jPanel2.add(txtCpfCliente);
-        jPanel2.add(jSeparatorCPF);
-
-        jPanel2.add(jLabel2);
-        jPanel2.add(btnMudarParaTelaLogin);
-        jPanel2.add(btnCadastro);
-
-        // Adiciona card
-        jPanel1.add(jPanel2);
-        jPanel3.add(jPanel1);
-
-        // Adiciona à janela
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(jPanel4, BorderLayout.NORTH);
-        getContentPane().add(jPanel3, BorderLayout.CENTER);
+    // 1. Painel Gradiente (Fundo)
+    class GradientPanel extends JPanel {
+        @Override protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            int w = getWidth(), h = getHeight();
+            GradientPaint gp = new GradientPaint(0, 0, new Color(23, 21, 56), w, h, new Color(60, 0, 120));
+            g2.setPaint(gp);
+            g2.fillRect(0, 0, w, h);
+        }
     }
 
-    // -------------------------------
-    //   BACK-END
-    // -------------------------------
+    // 2. Painel Translúcido (Card)
+    class TranslucentPanel extends JPanel {
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            // Preto com transparência (Alpha 100)
+            g2.setColor(new Color(0, 0, 0, 100)); 
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
 
-    private void registrar() {
+    // 3. Botão Principal Arredondado
+    public static class RoundedButton extends JButton {
+        public RoundedButton(String text) {
+            super(text);
+            setFocusPainted(false);
+            setBorderPainted(false);
+            setContentAreaFilled(false);
+            setForeground(Color.WHITE);
+            setFont(new Font("Arial", Font.BOLD, 18));
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(new Color(153, 50, 255)); // Roxo Neon
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25);
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
 
-        String nome = txtNomeCliente.getText().trim();
-        String email = txtEmailCliente.getText().trim();
-        String senha = new String(txtSenhaCliente.getPassword()).trim();
-        String cpf = txtCpfCliente.getText().trim();
+    // 4. Estilo para Botão Link
+    private void styleLinkButton(JButton b) {
+        b.setFont(new Font("Arial", Font.PLAIN, 14));
+        b.setForeground(new Color(200, 200, 255));
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(false);
+        b.setFocusPainted(false);
+        b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        b.addMouseListener(new MouseAdapter() {
+            @Override public void mouseEntered(MouseEvent e) { b.setForeground(Color.WHITE); }
+            @Override public void mouseExited(MouseEvent e) { b.setForeground(new Color(200, 200, 255)); }
+        });
+    }
+
+    // ==========================================
+    //            CONSTRUÇÃO DA TELA
+    // ==========================================
+
+    private void initUI() {
+        // Painel Principal Gradiente
+        GradientPanel mainPanel = new GradientPanel();
+        mainPanel.setLayout(new GridBagLayout()); 
+        setContentPane(mainPanel);
+
+        // --- HEADER ---
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        headerPanel.setOpaque(false);
+        JLabel title = new JLabel("R-Wash");
+        title.setFont(new Font("Arial", Font.BOLD, 32));
+        title.setForeground(Color.WHITE);
+        headerPanel.add(title);
+        
+        GridBagConstraints gbcHead = new GridBagConstraints();
+        gbcHead.gridx = 0; gbcHead.gridy = 0;
+        gbcHead.weightx = 1.0; gbcHead.anchor = GridBagConstraints.NORTHWEST;
+        gbcHead.insets = new Insets(20, 30, 0, 0);
+        mainPanel.add(headerPanel, gbcHead);
+
+        // --- CARD DE CADASTRO ---
+        TranslucentPanel signupCard = new TranslucentPanel();
+        signupCard.setOpaque(false);
+        signupCard.setLayout(new GridBagLayout());
+        
+        // --- AQUI QUE AUMENTA O TAMANHO ---
+        // Largura aumentada para 550 (era 450). Altura mantida 650.
+        signupCard.setPreferredSize(new Dimension(550, 650)); 
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        // Margens internas (laterais 40px para aproveitar a largura nova)
+        gbc.insets = new Insets(8, 40, 8, 40); 
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+
+        // 1. Título "Crie sua conta"
+        JLabel lblTitulo = new JLabel("Criar Conta");
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 32));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        gbc.gridy = 0;
+        gbc.insets = new Insets(30, 40, 20, 40);
+        signupCard.add(lblTitulo, gbc);
+
+        // 2. Nome
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 0, 40);
+        signupCard.add(criarLabel("Nome Completo"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 10, 40);
+        txtNome = criarTextField();
+        signupCard.add(txtNome, gbc);
+
+        // 3. Email
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 0, 40);
+        signupCard.add(criarLabel("Email"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 10, 40);
+        txtEmail = criarTextField();
+        signupCard.add(txtEmail, gbc);
+
+        // 4. CPF
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 0, 40);
+        signupCard.add(criarLabel("CPF"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 10, 40);
+        txtCPF = criarTextField();
+        signupCard.add(txtCPF, gbc);
+
+        // 5. Senha
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 0, 40);
+        signupCard.add(criarLabel("Senha"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 25, 40);
+        txtSenha = criarPasswordField();
+        signupCard.add(txtSenha, gbc);
+
+        // 6. Botão CADASTRAR
+        btnCadastrar = new RoundedButton("REGISTRAR");
+        btnCadastrar.setPreferredSize(new Dimension(0, 50));
+        btnCadastrar.addActionListener(e -> acaoCadastrar());
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 20, 40);
+        signupCard.add(btnCadastrar, gbc);
+
+        // 7. Voltar para Login
+        JPanel loginPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        loginPanel.setOpaque(false);
+        
+        JLabel lblTemConta = new JLabel("Já tem uma conta?");
+        lblTemConta.setForeground(Color.GRAY);
+        lblTemConta.setFont(new Font("Arial", Font.PLAIN, 13));
+        
+        btnVoltarLogin = new JButton("Fazer Login");
+        styleLinkButton(btnVoltarLogin);
+        btnVoltarLogin.setFont(new Font("Arial", Font.BOLD, 13));
+        btnVoltarLogin.setForeground(new Color(153, 50, 255));
+        btnVoltarLogin.addActionListener(e -> abrirLogin());
+
+        loginPanel.add(lblTemConta);
+        loginPanel.add(btnVoltarLogin);
+
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 40, 30, 40);
+        signupCard.add(loginPanel, gbc);
+
+        // Adiciona card ao centro
+        GridBagConstraints gbcMain = new GridBagConstraints();
+        gbcMain.gridx = 0; gbcMain.gridy = 1;
+        gbcMain.weightx = 1.0; gbcMain.weighty = 1.0;
+        gbcMain.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(signupCard, gbcMain);
+
+        pack();
+    }
+
+    // --- Helpers de Input ---
+    
+    private JLabel criarLabel(String texto) {
+        JLabel lbl = new JLabel(texto);
+        lbl.setForeground(new Color(220, 220, 220));
+        lbl.setFont(new Font("Arial", Font.PLAIN, 14));
+        return lbl;
+    }
+
+    private JTextField criarTextField() {
+        JTextField txt = new JTextField();
+        txt.setOpaque(false);
+        txt.setForeground(Color.WHITE);
+        txt.setFont(new Font("Arial", Font.PLAIN, 16));
+        txt.setCaretColor(Color.WHITE);
+        txt.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(153, 50, 255)),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        return txt;
+    }
+
+    private JPasswordField criarPasswordField() {
+        JPasswordField txt = new JPasswordField();
+        txt.setOpaque(false);
+        txt.setForeground(Color.WHITE);
+        txt.setFont(new Font("Arial", Font.PLAIN, 16));
+        txt.setCaretColor(Color.WHITE);
+        txt.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(153, 50, 255)),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        return txt;
+    }
+
+    // ==========================================
+    //            LÓGICA DE NEGÓCIO
+    // ==========================================
+
+    private void acaoCadastrar() {
+        String nome = txtNome.getText().trim();
+        String email = txtEmail.getText().trim();
+        String senha = new String(txtSenha.getPassword()).trim();
+        String cpf = txtCPF.getText().trim();
 
         if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Preencha todos os campos!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Atenção", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -193,16 +279,19 @@ public class TelaCadastro extends JFrame {
         boolean sucesso = UsuarioDAO.salvar(novo);
 
         if (sucesso) {
-            JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso!");
-            this.dispose();
-            new TelaLogin().setVisible(true);
+            JOptionPane.showMessageDialog(this, "Cadastro realizado com sucesso! Faça login.");
+            abrirLogin();
         } else {
-            JOptionPane.showMessageDialog(this, "Erro ao cadastrar!", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Erro ao cadastrar. Verifique os dados ou tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void abrirLogin() {
         setVisible(false);
         new TelaLogin().setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new TelaCadastro().setVisible(true));
     }
 }

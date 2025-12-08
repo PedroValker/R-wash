@@ -1,182 +1,290 @@
 package com.mycompany.rwash.views;
 
-import com.mycompany.rwash.Model.Usuario;
 import com.mycompany.rwash.DAO.UsuarioDAO;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.*;
 
 public class TelaLogin extends JFrame {
 
-    Usuario objAlterar = null;
-
-    private javax.swing.JButton btnEsquecerSenha;
-    private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnMudarTelaCadastrar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField txtEmailCliente;
-    private javax.swing.JPasswordField txtSenhaCliente;
+    // Componentes
+    private JTextField txtEmail;
+    private JPasswordField txtSenha;
+    private RoundedButton btnLogin;
+    private JButton btnEsquecerSenha;
+    private JButton btnCadastrar;
 
     public TelaLogin() {
-        initCustomUI();
-        setTitle("R-Wash - Login");
+        initUI();
+        setTitle("R-Wash | Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
 
-    private void initCustomUI() {
+    // ==========================================
+    //       CLASSES DE DESIGN E ESTILO
+    // ==========================================
 
-        // Painel superior 
-        jPanel4 = new GradientPanel();
-        jPanel4.setPreferredSize(new Dimension(0, 150));
-        jPanel4.setLayout(new BorderLayout());
+    // 1. Painel Gradiente (Fundo)
+    class GradientPanel extends JPanel {
+        @Override protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
+            int w = getWidth(), h = getHeight();
+            GradientPaint gp = new GradientPaint(0, 0, new Color(23, 21, 56), w, h, new Color(60, 0, 120));
+            g2.setPaint(gp);
+            g2.fillRect(0, 0, w, h);
+        }
+    }
 
-        jLabel1 = new JLabel("CONECTE-SE", SwingConstants.CENTER);
-        jLabel1.setFont(new Font("Arial", Font.BOLD, 48));
-        jLabel1.setForeground(new Color(153, 50, 255));
+    // 2. Painel Translúcido (Card)
+    class TranslucentPanel extends JPanel {
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            // Preto com transparência (Alpha 100)
+            g2.setColor(new Color(0, 0, 0, 100)); 
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 30, 30);
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
 
-        jPanel4.add(jLabel1, BorderLayout.CENTER);
+    // 3. Botão Principal Arredondado
+    public static class RoundedButton extends JButton {
+        public RoundedButton(String text) {
+            super(text);
+            setFocusPainted(false);
+            setBorderPainted(false);
+            setContentAreaFilled(false);
+            setForeground(Color.WHITE);
+            setFont(new Font("Arial", Font.BOLD, 18));
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        }
+        @Override protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(new Color(153, 50, 255)); // Roxo Neon
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 25, 25);
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
 
-        // Painel gradiente
-        jPanel3 = new JPanel(new GridLayout(1, 1));
-        jPanel1 = new GradientPanel();
-        jPanel1.setLayout(new GridBagLayout());
+    // 4. Estilo para Botão Link
+    private void styleLinkButton(JButton b) {
+        b.setFont(new Font("Arial", Font.PLAIN, 14));
+        b.setForeground(new Color(200, 200, 255));
+        b.setContentAreaFilled(false);
+        b.setBorderPainted(false);
+        b.setFocusPainted(false);
+        b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        b.addMouseListener(new MouseAdapter() {
+            @Override public void mouseEntered(MouseEvent e) { b.setForeground(Color.WHITE); }
+            @Override public void mouseExited(MouseEvent e) { b.setForeground(new Color(200, 200, 255)); }
+        });
+    }
 
-        // Painel branco 
-        jPanel2 = new JPanel();
-        jPanel2.setPreferredSize(new Dimension(380, 420));
-        jPanel2.setBackground(Color.WHITE);
-        jPanel2.setLayout(null);
+    // ==========================================
+    //            CONSTRUÇÃO DA TELA
+    // ==========================================
 
-        // Email
-        jLabel3 = new JLabel("Email");
-        jLabel3.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabel3.setBounds(30, 40, 200, 22);
+    private void initUI() {
+        // Painel Principal Gradiente
+        GradientPanel mainPanel = new GradientPanel();
+        mainPanel.setLayout(new GridBagLayout()); 
+        setContentPane(mainPanel);
 
-        txtEmailCliente = new JTextField();
-        txtEmailCliente.setBounds(30, 65, 300, 28);
-        txtEmailCliente.setBorder(null);
+        // --- HEADER ---
+        // Título fixo no topo esquerdo
+        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        headerPanel.setOpaque(false);
+        JLabel title = new JLabel("R-Wash");
+        title.setFont(new Font("Arial", Font.BOLD, 32));
+        title.setForeground(Color.WHITE);
+        headerPanel.add(title);
+        
+        GridBagConstraints gbcHead = new GridBagConstraints();
+        gbcHead.gridx = 0; gbcHead.gridy = 0;
+        gbcHead.weightx = 1.0; gbcHead.anchor = GridBagConstraints.NORTHWEST;
+        gbcHead.insets = new Insets(20, 30, 0, 0);
+        mainPanel.add(headerPanel, gbcHead);
 
-        jSeparator1 = new JSeparator();
-        jSeparator1.setBounds(30, 93, 300, 1);
+        // --- CARD DE LOGIN ---
+        TranslucentPanel loginCard = new TranslucentPanel();
+        loginCard.setOpaque(false);
+        loginCard.setLayout(new GridBagLayout());
+        loginCard.setPreferredSize(new Dimension(400, 500)); 
 
-        // Senha
-        jLabel4 = new JLabel("Senha");
-        jLabel4.setFont(new Font("Arial", Font.PLAIN, 16));
-        jLabel4.setBounds(30, 125, 200, 22);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(10, 30, 10, 30);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
 
-        txtSenhaCliente = new JPasswordField();
-        txtSenhaCliente.setBounds(30, 150, 300, 28);
-        txtSenhaCliente.setBorder(null);
+        // 1. Título "CONECTE-SE"
+        JLabel lblTitulo = new JLabel("Login");
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 36));
+        lblTitulo.setForeground(Color.WHITE);
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        gbc.gridy = 0;
+        gbc.insets = new Insets(40, 30, 30, 30);
+        loginCard.add(lblTitulo, gbc);
 
-        jSeparator3 = new JSeparator();
-        jSeparator3.setBounds(30, 178, 300, 1);
+        // 2. Email
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 0, 30);
+        loginCard.add(criarLabel("Email"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 20, 30);
+        txtEmail = criarTextField();
+        loginCard.add(txtEmail, gbc);
 
-        // Esqueceu senha
+        // 3. Senha
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 0, 30);
+        loginCard.add(criarLabel("Senha"), gbc);
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 10, 30);
+        txtSenha = criarPasswordField();
+        loginCard.add(txtSenha, gbc);
+
+        // 4. Esqueci Senha (Direita)
+        JPanel forgotPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        forgotPanel.setOpaque(false);
         btnEsquecerSenha = new JButton("Esqueceu a senha?");
-        btnEsquecerSenha.setBounds(90, 190, 200, 30);
-        btnEsquecerSenha.setHorizontalAlignment(SwingConstants.CENTER);
-        btnEsquecerSenha.setBorder(null);
-        btnEsquecerSenha.setContentAreaFilled(false);
-        btnEsquecerSenha.setForeground(new Color(120, 120, 120));
-        btnEsquecerSenha.setFocusPainted(false);
+        styleLinkButton(btnEsquecerSenha);
+        btnEsquecerSenha.setFont(new Font("Arial", Font.PLAIN, 12));
+        forgotPanel.add(btnEsquecerSenha);
 
-        // Não tem conta?
-        jLabel2 = new JLabel("Não tem uma conta?");
-        jLabel2.setFont(new Font("Arial", Font.PLAIN, 14));
-        jLabel2.setBounds(75, 250, 150, 25);
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 30, 30);
+        loginCard.add(forgotPanel, gbc);
 
-        // Botão cadastrar
-        btnMudarTelaCadastrar = new JButton("Cadastrar");
-        btnMudarTelaCadastrar.setBorder(null);
-        btnMudarTelaCadastrar.setContentAreaFilled(false);
-        btnMudarTelaCadastrar.setForeground(new Color(153, 50, 255));
-        btnMudarTelaCadastrar.setBounds(220, 250, 120, 25);
-        btnMudarTelaCadastrar.addActionListener((e) -> abrirCadastro());
+        // 5. Botão LOGIN
+        btnLogin = new RoundedButton("ENTRAR");
+        btnLogin.setPreferredSize(new Dimension(0, 50));
+        btnLogin.addActionListener(e -> acaoLogin());
+        
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 20, 30);
+        loginCard.add(btnLogin, gbc);
 
-        // Botão LOGIN 
-        btnLogin = new RoundedButton("LOGIN");
-        btnLogin.setBounds(75, 290, 230, 50);
-        btnLogin.setFont(new Font("Arial", Font.BOLD, 18));
-        btnLogin.addActionListener((e) -> btnLoginActionPerformed(null));
+        // 6. Criar Conta
+        JPanel signupPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        signupPanel.setOpaque(false);
+        
+        JLabel lblNaoTem = new JLabel("Não tem conta?");
+        lblNaoTem.setForeground(Color.GRAY);
+        lblNaoTem.setFont(new Font("Arial", Font.PLAIN, 13));
+        
+        btnCadastrar = new JButton("Cadastre-se");
+        styleLinkButton(btnCadastrar);
+        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 13));
+        btnCadastrar.setForeground(new Color(153, 50, 255)); // Destaque roxo
+        btnCadastrar.addActionListener(e -> abrirCadastro());
 
-        // Adiciona no painel branco
-        jPanel2.add(jLabel3);
-        jPanel2.add(txtEmailCliente);
-        jPanel2.add(jSeparator1);
+        signupPanel.add(lblNaoTem);
+        signupPanel.add(btnCadastrar);
 
-        jPanel2.add(jLabel4);
-        jPanel2.add(txtSenhaCliente);
-        jPanel2.add(jSeparator3);
+        gbc.gridy++;
+        gbc.insets = new Insets(0, 30, 40, 30);
+        loginCard.add(signupPanel, gbc);
 
-        jPanel2.add(btnEsquecerSenha);
+        // Adiciona card ao centro
+        GridBagConstraints gbcMain = new GridBagConstraints();
+        gbcMain.gridx = 0; gbcMain.gridy = 1;
+        gbcMain.weightx = 1.0; gbcMain.weighty = 1.0;
+        gbcMain.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(loginCard, gbcMain);
 
-        jPanel2.add(jLabel2);
-        jPanel2.add(btnMudarTelaCadastrar);
-
-        jPanel2.add(btnLogin);
-
-        jPanel1.add(jPanel2);
-        jPanel3.add(jPanel1);
-
-        getContentPane().setLayout(new BorderLayout());
-        getContentPane().add(jPanel4, BorderLayout.NORTH);
-        getContentPane().add(jPanel3, BorderLayout.CENTER);
+        pack();
     }
 
-    // -------------------------------
-    //   BACK-END 
-    // -------------------------------
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
-
-       String email = txtEmailCliente.getText();
-    String senha = new String(txtSenhaCliente.getPassword()); 
-
-    // Autenticar no DAO
-    int idClienteLogado = UsuarioDAO.autenticar(email, senha);
-
-    if (idClienteLogado > 0) {
-        JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-        this.dispose(); // Fecha a tela de login
-
-        // Verifica se o cliente já fez uma compra
-        boolean jaComprou = UsuarioDAO.clienteJaComprou(idClienteLogado);
-
-        if (jaComprou) {
-        // Cliente ainda não comprou, vai para a tela de compra
-        DashBoardCliente dashboard = new DashBoardCliente(idClienteLogado);
-        dashboard.setVisible(true);
-        
-    } else {
-        
-        // Cliente já comprou → vai para o painel do cliente
-        PainelCliente painel = new PainelCliente(idClienteLogado);
-        painel.setVisible(true);
-    }
-
-    } else {
-        JOptionPane.showMessageDialog(rootPane, 
-            "Falha no Login. Email ou Senha inválidos.", 
-            "Erro de Autenticação", 
-            JOptionPane.ERROR_MESSAGE);
+    // --- Helpers de Input ---
     
-}
+    private JLabel criarLabel(String texto) {
+        JLabel lbl = new JLabel(texto);
+        lbl.setForeground(new Color(220, 220, 220));
+        lbl.setFont(new Font("Arial", Font.PLAIN, 14));
+        return lbl;
+    }
+
+    private JTextField criarTextField() {
+        JTextField txt = new JTextField();
+        txt.setOpaque(false);
+        txt.setForeground(Color.WHITE);
+        txt.setFont(new Font("Arial", Font.PLAIN, 16));
+        txt.setCaretColor(Color.WHITE);
+        txt.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(153, 50, 255)),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        return txt;
+    }
+
+    private JPasswordField criarPasswordField() {
+        JPasswordField txt = new JPasswordField();
+        txt.setOpaque(false);
+        txt.setForeground(Color.WHITE);
+        txt.setFont(new Font("Arial", Font.PLAIN, 16));
+        txt.setCaretColor(Color.WHITE);
+        txt.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(153, 50, 255)),
+            BorderFactory.createEmptyBorder(5, 5, 5, 5)
+        ));
+        return txt;
+    }
+
+    // ==========================================
+    //            LÓGICA DE NEGÓCIO
+    // ==========================================
+
+    private void acaoLogin() {
+        String email = txtEmail.getText();
+        String senha = new String(txtSenha.getPassword());
+
+        int idClienteLogado = UsuarioDAO.autenticar(email, senha);
+
+        if (idClienteLogado > 0) {
+            this.dispose(); 
+
+            // Verifica se o cliente já comprou
+            boolean jaComprou = UsuarioDAO.clienteJaComprou(idClienteLogado);
+
+            if (jaComprou) {
+                // Se já comprou -> Vai para o Painel Principal (Dashboard)
+                // OBS: No seu código original, quem já comprou ia para DashBoardClienteAntigo ou PainelClienteAntigo
+                // Ajustei para os novos nomes padronizados que criamos hoje:
+                
+                // Opção 1: Ir para o Painel Geral (Onde tem botão dashboard)
+                new PainelCliente(idClienteLogado).setVisible(true);
+                
+                // Ou Opção 2: Ir direto pro Dashboard (Descomente se preferir)
+                // new DashBoardCliente(idClienteLogado).setVisible(true);
+
+            } else {
+                // Se NÃO comprou -> Vai para Painel Geral (para ver o botão "Novo Pedido")
+                new PainelCliente(idClienteLogado).setVisible(true);
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Email ou senha inválidos.", 
+                "Falha no Login", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void abrirCadastro() {
         setVisible(false);
-        new TelaCadastro().setVisible(true);
+        // Ajuste aqui se sua tela nova de cadastro chama "TelaCadastro" ou "TelaCadastroAntigo"
+        new TelaCadastro().setVisible(true); 
     }
 
     public static void main(String[] args) {

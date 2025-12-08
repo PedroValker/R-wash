@@ -287,7 +287,7 @@ public class TelaPrincipal extends JFrame {
 
     private void abrirCadastro() {
         this.setVisible(false);
-        new TelaCadastroAntigo().setVisible(true);
+        new TelaCadastro().setVisible(true);
     }
 
     private void abrirPainelClienteNaoLogado() {

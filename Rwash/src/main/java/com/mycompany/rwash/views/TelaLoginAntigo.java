@@ -6,7 +6,7 @@ package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.Model.Usuario;
 import com.mycompany.rwash.DAO.UsuarioDAO;
-import com.mycompany.rwash.views.PainelCliente;
+import com.mycompany.rwash.views.PainelClienteAntigo;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -229,13 +229,13 @@ import javax.swing.plaf.basic.BasicButtonUI;
 
         if (jaComprou) {
         // Cliente ainda não comprou → vai para a tela de compra
-        DashBoardCliente dashboard = new DashBoardCliente(idClienteLogado);
+        DashBoardClienteAntigo dashboard = new DashBoardClienteAntigo(idClienteLogado);
         dashboard.setVisible(true);
         
     } else {
         
         // Cliente já comprou → vai para o painel do cliente
-        PainelCliente painel = new PainelCliente(idClienteLogado);
+        PainelClienteAntigo painel = new PainelClienteAntigo(idClienteLogado);
         painel.setVisible(true);
     }
 

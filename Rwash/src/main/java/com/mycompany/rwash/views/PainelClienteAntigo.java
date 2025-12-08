@@ -6,6 +6,7 @@ package com.mycompany.rwash.views;
 
 import com.mycompany.rwash.DAO.UsuarioDAO;
 import com.mycompany.rwash.Model.Usuario;
+import com.mycompany.rwash.Model.Usuario.Sessao;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicButtonUI;
@@ -15,14 +16,14 @@ import javax.swing.plaf.basic.BasicButtonUI;
  *
  * @author aluno
  */
-public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
+public class PainelClienteAntigo extends javax.swing.JFrame {
 
     private int idCliente; // armazena o ID do cliente logado
 
     // Construtor padrão
-    public PainelClienteNãoLogadoAntigo() {
+    public PainelClienteAntigo() {
         initComponents();
-                JButton[] btns={btnLogin,btnAdquirirProduto,btnAdquirirProduto2};
+                JButton[] btns={btnLogout,btnAcessarDashBoard,btnAdquirirProduto2};
         for(JButton btn:btns){
             btn.setUI(new BasicButtonUI());
         }
@@ -30,7 +31,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
     }
 
     // Novo construtor que recebe o ID do cliente
-    public PainelClienteNãoLogadoAntigo(int idClienteLogado) {
+    public PainelClienteAntigo(int idClienteLogado) {
         this.idCliente = idClienteLogado;
         initComponents();
         // Aqui você pode carregar dados do cliente usando o ID
@@ -58,7 +59,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnAdquirirProduto2 = new javax.swing.JButton();
-        btnLogin = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -70,7 +71,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnAdquirirProduto = new javax.swing.JButton();
+        btnAcessarDashBoard = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -81,7 +82,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
         btnAdquirirProduto2.setBackground(new java.awt.Color(23, 21, 56));
         btnAdquirirProduto2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnAdquirirProduto2.setForeground(new java.awt.Color(153, 50, 255));
-        btnAdquirirProduto2.setText("Adquira Agora");
+        btnAdquirirProduto2.setText("Adquirir Produto");
         btnAdquirirProduto2.setBorder(null);
         btnAdquirirProduto2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,14 +90,14 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
             }
         });
 
-        btnLogin.setBackground(new java.awt.Color(23, 21, 56));
-        btnLogin.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(153, 50, 255));
-        btnLogin.setText("Login");
-        btnLogin.setBorder(null);
-        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setBackground(new java.awt.Color(23, 21, 56));
+        btnLogout.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(153, 50, 255));
+        btnLogout.setText("Logout");
+        btnLogout.setBorder(null);
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLoginActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -118,7 +119,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1362, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1359, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
@@ -126,7 +127,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
-                        .addComponent(btnLogin))
+                        .addComponent(btnLogout))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32))
         );
@@ -138,7 +139,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnLogin, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -200,13 +201,13 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
         jLabel8.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
 
-        btnAdquirirProduto.setBackground(new java.awt.Color(153, 50, 255));
-        btnAdquirirProduto.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        btnAdquirirProduto.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdquirirProduto.setText("ADQUIRA AGORA");
-        btnAdquirirProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnAcessarDashBoard.setBackground(new java.awt.Color(153, 50, 255));
+        btnAcessarDashBoard.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnAcessarDashBoard.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcessarDashBoard.setText("Acessar DashBoards");
+        btnAcessarDashBoard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdquirirProdutoActionPerformed(evt);
+                btnAcessarDashBoardActionPerformed(evt);
             }
         });
 
@@ -247,7 +248,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
                                 .addComponent(jLabel9)))
                         .addGap(70, 70, 70))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(btnAdquirirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAcessarDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(264, 264, 264)))
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(741, Short.MAX_VALUE))
@@ -269,7 +270,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7)
                 .addGap(30, 30, 30)
-                .addComponent(btnAdquirirProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAcessarDashBoard, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(177, 177, 177))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(114, 114, 114)
@@ -291,17 +292,22 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnAdquirirProduto2ActionPerformed
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-          setVisible(false);
-        TelaLoginAntigo janela = new TelaLoginAntigo();
-        janela.setVisible(true);
-    }//GEN-LAST:event_btnLoginActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // Limpar dados do cliente logado
+    Sessao.idClienteLogado = 0;
+    // Fechar completamente o dashboard
+    dispose();
 
-    private void btnAdquirirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdquirirProdutoActionPerformed
+    // Abrir o login novamente
+    TelaLoginAntigo login = new TelaLoginAntigo();
+    login.setVisible(true);
+    }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void btnAcessarDashBoardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarDashBoardActionPerformed
           setVisible(false);
-        TelaLoginAntigo janela = new TelaLoginAntigo();
+        TelaCadastroMaquinaAntigo janela = new TelaCadastroMaquinaAntigo();
         janela.setVisible(true);
-    }//GEN-LAST:event_btnAdquirirProdutoActionPerformed
+    }//GEN-LAST:event_btnAcessarDashBoardActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,31 +326,29 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelClienteNãoLogadoAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelClienteAntigo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PainelClienteNãoLogadoAntigo().setVisible(true);
+                new PainelClienteAntigo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdquirirProduto;
+    private javax.swing.JButton btnAcessarDashBoard;
     private javax.swing.JButton btnAdquirirProduto2;
-    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnLogout;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -361,5 +365,7 @@ public class PainelClienteNãoLogadoAntigo extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 
+    }
+
     
-}
+

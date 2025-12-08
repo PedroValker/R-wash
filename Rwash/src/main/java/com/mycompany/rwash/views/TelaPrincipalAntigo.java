@@ -336,7 +336,7 @@ private void substituirBotaoComAtualizacaoDeReferencia(javax.swing.JButton origi
 
     private void btnSaibaMaisActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnSaibaMaisActionPerformed
         setVisible(false);
-        PainelCliente janela = new PainelCliente();
+        PainelClienteAntigo janela = new PainelClienteAntigo();
     }//GEN-LAST:event_btnSaibaMaisActionPerformed
 
     /**
