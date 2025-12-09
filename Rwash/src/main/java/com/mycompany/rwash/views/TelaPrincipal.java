@@ -256,7 +256,7 @@ public class TelaPrincipal extends JFrame {
 
         JPanel ctaHolder = new JPanel(new GridBagLayout());
         ctaHolder.setOpaque(false);
-        ctaHolder.setBorder(new EmptyBorder(40, 0, 0, 0)); 
+        ctaHolder.setBorder(new EmptyBorder(40, -350, 0, 0)); 
 
         GridBagConstraints gbcBtn = new GridBagConstraints();
         gbcBtn.anchor = GridBagConstraints.WEST;
