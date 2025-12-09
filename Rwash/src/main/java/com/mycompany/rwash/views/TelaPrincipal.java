@@ -1,6 +1,5 @@
 package com.mycompany.rwash.views;
 
-import com.mycompany.rwash.Model.Usuario;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -8,28 +7,34 @@ import javax.swing.border.EmptyBorder;
 
 public class TelaPrincipal extends JFrame {
 
-    // Botões do cabeçalho
-    private JButton btnMudarTelaLogin;
-    private JButton btnMudarTelaCadastro;
+    // Variáveis para arrastar a janela
+    private int pX, pY;
 
-    // Botão Principal
+    // Elementos da UI
+    private JButton btnHeaderLogin;
+    private JButton btnHeaderCadastro;
+    private JButton btnClose; // Botão X
     private RoundedButton btnSaibaMais;
-    
-    // Label da imagem para controle de redimensionamento
     private JLabel imgLabel;
 
     public TelaPrincipal() {
+        // 1. Remove a borda padrão do Windows
+        setUndecorated(true); 
+        
         initUI();
+        
         // Configurações da Janela
-        setTitle("R-Wash");
+        setTitle("R-Wash | Bem-vindo");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
     }
 
-    // --- CLASSES AUXILIARES (Idênticas ao PainelCliente) ---
+    // ==========================================
+    //       CLASSES DE DESIGN E ESTILO
+    // ==========================================
 
-    // 1. Botão Arredondado
+    // 1. Botão Arredondado (Principal)
     public static class RoundedButton extends JButton {
         public RoundedButton(String text) {
             super(text);
@@ -43,7 +48,7 @@ public class TelaPrincipal extends JFrame {
         @Override protected void paintComponent(Graphics g) {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-            g2.setColor(getBackground());
+            g2.setColor(new Color(153, 50, 255)); // Roxo Neon
             g2.fillRoundRect(0,0,getWidth(),getHeight(),28,28);
             super.paintComponent(g2);
             g2.dispose();
@@ -56,19 +61,19 @@ public class TelaPrincipal extends JFrame {
             super.paintComponent(g);
             Graphics2D g2 = (Graphics2D) g;
             int w = getWidth(), h = getHeight();
-            // Mesmas cores do PainelCliente
             GradientPaint gp = new GradientPaint(0,0,new Color(23,21,56), w, h, new Color(60,0,120));
             g2.setPaint(gp);
             g2.fillRect(0,0,w,h);
         }
     }
 
-    // 3. Sublinhado Animado
+    // 3. Sublinhado Animado (Para botões do Header)
     class AnimatedUnderline extends JComponent {
         private Color current = new Color(153, 50, 255);
         private final Color hover = Color.WHITE;
         private final Color normal = new Color(153, 50, 255);
         private Timer timer;
+
         public AnimatedUnderline(JButton target) {
             setOpaque(false);
             setPreferredSize(new Dimension(100, 3));
@@ -100,6 +105,7 @@ public class TelaPrincipal extends JFrame {
         }
     }
 
+    // Método auxiliar para criar o botão com sublinhado
     private JPanel wrapHeaderButton(final JButton btn) {
         JPanel wrapper = new JPanel(new BorderLayout());
         wrapper.setOpaque(false);
@@ -120,8 +126,7 @@ public class TelaPrincipal extends JFrame {
     }
 
     private void styleHeaderButton(JButton b) {
-        b.setFont(new Font("Arial", Font.BOLD, 20));
-        // Alterado de Color.WHITE para a cor roxa da marca
+        b.setFont(new Font("Arial", Font.BOLD, 18));
         b.setForeground(new Color(153, 50, 255)); 
         b.setContentAreaFilled(false);
         b.setBorder(new EmptyBorder(6,10,6,10));
@@ -130,43 +135,84 @@ public class TelaPrincipal extends JFrame {
         b.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }
 
-    // --- CONSTRUÇÃO DA INTERFACE ---
+    // ==========================================
+    //            CONSTRUÇÃO DA TELA
+    // ==========================================
 
     private void initUI() {
         GradientPanel main = new GradientPanel();
         main.setLayout(new BorderLayout(0,0));
         setContentPane(main);
 
-        // --- HEADER ---
+        // --- HEADER PERSONALIZADO (Com Login, Cadastro e Fechar) ---
         JPanel header = new JPanel(new BorderLayout());
         header.setOpaque(false);
         header.setBorder(new EmptyBorder(14,22,6,22));
 
+        // Título (Esquerda)
         JLabel tituloLabel = new JLabel("R-Wash");
-        tituloLabel.setFont(new Font("Arial", Font.BOLD, 34));
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 32));
         tituloLabel.setForeground(Color.WHITE);
         header.add(tituloLabel, BorderLayout.WEST);
 
-        JPanel rightButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 22, 12));
+        // Botões (Direita)
+        JPanel rightButtons = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 5));
         rightButtons.setOpaque(false);
 
-        // Botão Login
-        btnMudarTelaLogin = new JButton("Login");
-        styleHeaderButton(btnMudarTelaLogin);
-        btnMudarTelaLogin.addActionListener(e -> abrirLogin());
+        // 1. Login
+        btnHeaderLogin = new JButton("Login");
+        styleHeaderButton(btnHeaderLogin);
+        btnHeaderLogin.addActionListener(e -> abrirLogin());
 
-        // Botão Cadastro
-        btnMudarTelaCadastro = new JButton("Cadastro");
-        styleHeaderButton(btnMudarTelaCadastro);
-        btnMudarTelaCadastro.addActionListener(e -> abrirCadastro());
+        // 2. Cadastro
+        btnHeaderCadastro = new JButton("Cadastro");
+        styleHeaderButton(btnHeaderCadastro);
+        btnHeaderCadastro.addActionListener(e -> abrirCadastro());
+        
+        // 3. Botão Fechar (X)
+        btnClose = new JButton("X");
+        btnClose.setFont(new Font("Arial", Font.BOLD, 20));
+        btnClose.setForeground(Color.WHITE);
+        btnClose.setContentAreaFilled(false);
+        btnClose.setBorderPainted(false);
+        btnClose.setFocusPainted(false);
+        btnClose.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnClose.addMouseListener(new MouseAdapter() {
+            @Override public void mouseEntered(MouseEvent e) { btnClose.setForeground(new Color(255, 80, 80)); } // Fica vermelho
+            @Override public void mouseExited(MouseEvent e) { btnClose.setForeground(Color.WHITE); }
+        });
+        btnClose.addActionListener(e -> System.exit(0)); // Fecha o app
 
-        rightButtons.add(wrapHeaderButton(btnMudarTelaLogin));
+        // Adiciona os botões ao painel direito
+        rightButtons.add(wrapHeaderButton(btnHeaderLogin));
+        rightButtons.add(wrapHeaderButton(btnHeaderCadastro));
+        
+        // Separador pequeno antes do X
+        JSeparator sepVertical = new JSeparator(SwingConstants.VERTICAL);
+        sepVertical.setPreferredSize(new Dimension(2, 25));
+        sepVertical.setForeground(new Color(255,255,255,50));
         rightButtons.add(Box.createHorizontalStrut(10));
-        rightButtons.add(wrapHeaderButton(btnMudarTelaCadastro));
+        rightButtons.add(sepVertical);
+        rightButtons.add(Box.createHorizontalStrut(10));
+        rightButtons.add(btnClose);
 
         header.add(rightButtons, BorderLayout.EAST);
 
-        // Separador do Header
+        // LÓGICA PARA ARRASTAR A JANELA (Drag & Drop)
+        header.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent me) {
+                pX = me.getX();
+                pY = me.getY();
+            }
+        });
+        header.addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseDragged(MouseEvent me) {
+                setLocation(getLocation().x + me.getX() - pX,
+                            getLocation().y + me.getY() - pY);
+            }
+        });
+
+        // Separador Inferior do Header
         JSeparator headerLine = new JSeparator();
         headerLine.setForeground(new Color(255,255,255,60));
         JPanel headerWrap = new JPanel(new BorderLayout());
@@ -175,79 +221,81 @@ public class TelaPrincipal extends JFrame {
         headerWrap.add(headerLine, BorderLayout.SOUTH);
         main.add(headerWrap, BorderLayout.NORTH);
 
-        // --- CENTER CONTENT (GridBagLayout) ---
+        // --- CONTEÚDO CENTRAL (GridBagLayout) ---
         JPanel center = new JPanel(new GridBagLayout());
         center.setOpaque(false);
         GridBagConstraints gbc = new GridBagConstraints();
 
-        // 1. LEFT: Texto + Botão
-        
-        // Adaptando seu texto antigo para HTML para manter a mesma formatação visual do outro painel
+        // >>> LADO ESQUERDO: Texto e Botão <<<
+        JPanel leftPanel = new JPanel(new GridBagLayout());
+        leftPanel.setOpaque(false);
+        leftPanel.setBorder(new EmptyBorder(0, 100, 0, 24)); 
+
+        GridBagConstraints gbcLeft = new GridBagConstraints();
+        gbcLeft.gridx = 0; gbcLeft.gridy = 0;
+        gbcLeft.anchor = GridBagConstraints.WEST;
+        gbcLeft.fill = GridBagConstraints.HORIZONTAL;
+
         String html =
-            "<html><div style='width:600px; font-family:Arial; line-height:1.2; text-align: left;'>"
+            "<html><div style='width:550px; font-family:Arial; line-height:1.2; text-align: left;'>"
             + "<span style='font-size:56px; font-weight:bold; color:#ffffff;'>Água limpa,</span><br>"
             + "<span style='font-size:56px; font-weight:bold; color:#9932FF;'>futuro</span><br>"
             + "<span style='font-size:56px; font-weight:bold; color:#ffffff;'>sustentável</span>"
             + "</div></html>";
 
         JLabel textBlock = new JLabel(html);
-        textBlock.setVerticalAlignment(SwingConstants.TOP);
-
-        JPanel leftPanel = new JPanel(new BorderLayout());
-        leftPanel.setOpaque(false);
-        leftPanel.setBorder(new EmptyBorder(30, 150, 30, 24));
-        leftPanel.add(textBlock, BorderLayout.NORTH);
+        leftPanel.add(textBlock, gbcLeft);
 
         // Botão Saiba Mais
         btnSaibaMais = new RoundedButton("SAIBA MAIS");
-        btnSaibaMais.setBackground(new Color(153, 50, 255));
-        btnSaibaMais.setPreferredSize(new Dimension(220, 55));
+        Dimension btnDim = new Dimension(280, 70);
+        btnSaibaMais.setPreferredSize(btnDim);
+        btnSaibaMais.setMinimumSize(btnDim);
+        btnSaibaMais.setMaximumSize(btnDim);
         btnSaibaMais.addActionListener(e -> abrirPainelClienteNaoLogado());
 
-        JPanel ctaHolder = new JPanel(new GridBagLayout()); 
+        JPanel ctaHolder = new JPanel(new GridBagLayout());
         ctaHolder.setOpaque(false);
-        ctaHolder.setBorder(new EmptyBorder(35, 70, 0, 0));        
+        ctaHolder.setBorder(new EmptyBorder(40, 0, 0, 0)); 
+
         GridBagConstraints gbcBtn = new GridBagConstraints();
         gbcBtn.anchor = GridBagConstraints.WEST;
-        gbcBtn.weightx = 1.0;
+        gbcBtn.fill = GridBagConstraints.NONE;
         ctaHolder.add(btnSaibaMais, gbcBtn);
+        
+        gbcLeft.gridy = 1;
+        leftPanel.add(ctaHolder, gbcLeft);
 
-        leftPanel.add(ctaHolder, BorderLayout.CENTER);
-
-        // Configuração GBC do Painel Esquerdo
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.weightx = 0.6; 
+        // Add Left to Main Grid
+        gbc.gridx = 0; gbc.gridy = 0;
+        gbc.weightx = 0.6; gbc.weighty = 1.0;
         gbc.gridwidth = 1;
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
         center.add(leftPanel, gbc);
 
-        // 2. RIGHT: Imagem (Lógica idêntica ao PainelCliente)
+        // >>> LADO DIREITO: Imagem <<<
         imgLabel = new JLabel();
         imgLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        // Tenta carregar a imagem
-        java.net.URL imgUrl = getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg");
-        final ImageIcon original;
-        if (imgUrl != null) {
-            original = new ImageIcon(imgUrl);
-        } else {
-            original = new ImageIcon(); // Vazio para evitar erro
+        java.net.URL imgUrl = getClass().getResource("/lavadora_dark.jpg");
+        if (imgUrl == null) {
+            imgUrl = getClass().getResource("/lavadora-de-roupas-maquina-de-lavar-roupas-maquina-com-porta-frontal-frigelar-blog-da-frigelar.jpg");
         }
+        
+        final ImageIcon original;
+        if (imgUrl != null) original = new ImageIcon(imgUrl);
+        else original = new ImageIcon();
 
-        // Lógica de redimensionamento dinâmico
         center.addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
                 if (original.getIconWidth() <= 0) return;
-
                 int totalW = center.getWidth();
                 if (totalW <= 0) return;
 
-                // MESMA PROPORÇÃO DO PAINEL CLIENTE (0.45 = 45% da tela)
-                int targetW = (int)(totalW * 0.45); 
-                targetW = Math.max(300, Math.min(targetW, 600)); // Limites min/max
+                int targetW = (int)(totalW * 0.35); 
+                targetW = Math.max(300, Math.min(targetW, 550));
 
                 double ratio = (double) original.getIconHeight() / original.getIconWidth();
                 int targetH = (int)(targetW * ratio);
@@ -257,42 +305,40 @@ public class TelaPrincipal extends JFrame {
             }
         });
 
-        JPanel rightPanel = new JPanel(new BorderLayout());
+        JPanel rightPanel = new JPanel(new GridBagLayout());
         rightPanel.setOpaque(false);
-        rightPanel.setBorder(new EmptyBorder(10, 10, 10, 60)); // Margens idênticas
-        rightPanel.add(imgLabel, BorderLayout.NORTH);
+        rightPanel.setBorder(new EmptyBorder(10, 10, 10, 60));
+        
+        GridBagConstraints gbcImg = new GridBagConstraints();
+        gbcImg.anchor = GridBagConstraints.CENTER;
+        rightPanel.add(imgLabel, gbcImg);
 
-        // Configuração GBC do Painel Direito
         gbc = new GridBagConstraints();
-        gbc.gridx = 1;
-        gbc.gridy = 0;
-        gbc.weightx = 0.4;
+        gbc.gridx = 1; gbc.gridy = 0;
+        gbc.weightx = 0.4; gbc.weighty = 1.0;
         gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.BOTH;
-        gbc.anchor = GridBagConstraints.NORTH;
-        gbc.insets = new Insets(0, 20, 0, 0); // Separador
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 20, 0, 0);
         center.add(rightPanel, gbc);
 
         main.add(center, BorderLayout.CENTER);
-
         pack();
     }
 
-    // --- MÉTODOS DE NAVEGAÇÃO ---
+    // --- TRANSIÇÕES SUAVES ---
 
     private void abrirLogin() {
-        this.setVisible(false);
-        new TelaLogin().setVisible(true);
+        // Usa a classe Transicao para efeito Fade In/Out
+        Transicao.trocar(this, new TelaLogin());
     }
 
     private void abrirCadastro() {
-        this.setVisible(false);
-        new TelaCadastro().setVisible(true);
+        Transicao.trocar(this, new TelaCadastro());
     }
 
     private void abrirPainelClienteNaoLogado() {
-        this.setVisible(false);
-        new PainelClienteNaoLogado().setVisible(true);
+        Transicao.trocar(this, new PainelClienteNaoLogado());
     }
 
     public static void main(String[] args) {

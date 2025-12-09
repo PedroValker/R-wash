@@ -17,7 +17,12 @@ public class TelaLogin extends JFrame {
     private JButton btnCadastrar;
 
     public TelaLogin() {
+        // 1. Remove borda do Windows
+        setUndecorated(true);
+        
         initUI();
+        
+        // Configurações da Janela
         setTitle("R-Wash | Login");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
@@ -98,59 +103,58 @@ public class TelaLogin extends JFrame {
         mainPanel.setLayout(new GridBagLayout()); 
         setContentPane(mainPanel);
 
-        // --- HEADER ---
-        // Título fixo no topo esquerdo
-        JPanel headerPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        headerPanel.setOpaque(false);
-        JLabel title = new JLabel("R-Wash");
-        title.setFont(new Font("Arial", Font.BOLD, 32));
-        title.setForeground(Color.WHITE);
-        headerPanel.add(title);
+        // --- HEADER PERSONALIZADO (Com botão X e arraste) ---
+        // Certifique-se de que a classe HeaderPersonalizado.java existe no pacote
+        HeaderPersonalizado headerPanel = new HeaderPersonalizado(this, "R-Wash");
         
         GridBagConstraints gbcHead = new GridBagConstraints();
         gbcHead.gridx = 0; gbcHead.gridy = 0;
-        gbcHead.weightx = 1.0; gbcHead.anchor = GridBagConstraints.NORTHWEST;
-        gbcHead.insets = new Insets(20, 30, 0, 0);
+        gbcHead.weightx = 1.0; 
+        gbcHead.fill = GridBagConstraints.HORIZONTAL;
+        gbcHead.anchor = GridBagConstraints.NORTH;
+        // Sem insets ou margens, pois o HeaderPersonalizado já cuida disso
         mainPanel.add(headerPanel, gbcHead);
 
         // --- CARD DE LOGIN ---
         TranslucentPanel loginCard = new TranslucentPanel();
         loginCard.setOpaque(false);
         loginCard.setLayout(new GridBagLayout());
+        
+        // --- TAMANHO PADRONIZADO (Igual ao Cadastro) ---
         loginCard.setPreferredSize(new Dimension(400, 500)); 
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 30, 10, 30);
+        gbc.insets = new Insets(10, 40, 10, 40); // Margens laterais maiores (40) para o card largo
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
 
-        // 1. Título "CONECTE-SE"
+        // 1. Título "Login"
         JLabel lblTitulo = new JLabel("Login");
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 36));
         lblTitulo.setForeground(Color.WHITE);
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         
         gbc.gridy = 0;
-        gbc.insets = new Insets(40, 30, 30, 30);
+        gbc.insets = new Insets(40, 40, 40, 40); // Mais espaço vertical no título
         loginCard.add(lblTitulo, gbc);
 
         // 2. Email
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 0, 30);
+        gbc.insets = new Insets(0, 40, 0, 40);
         loginCard.add(criarLabel("Email"), gbc);
         
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 20, 30);
+        gbc.insets = new Insets(0, 40, 25, 40); // Mais espaçamento entre campos
         txtEmail = criarTextField();
         loginCard.add(txtEmail, gbc);
 
         // 3. Senha
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 0, 30);
+        gbc.insets = new Insets(0, 40, 0, 40);
         loginCard.add(criarLabel("Senha"), gbc);
         
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 10, 30);
+        gbc.insets = new Insets(0, 40, 10, 40);
         txtSenha = criarPasswordField();
         loginCard.add(txtSenha, gbc);
 
@@ -159,11 +163,11 @@ public class TelaLogin extends JFrame {
         forgotPanel.setOpaque(false);
         btnEsquecerSenha = new JButton("Esqueceu a senha?");
         styleLinkButton(btnEsquecerSenha);
-        btnEsquecerSenha.setFont(new Font("Arial", Font.PLAIN, 12));
+        btnEsquecerSenha.setFont(new Font("Arial", Font.PLAIN, 13));
         forgotPanel.add(btnEsquecerSenha);
 
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 30, 30);
+        gbc.insets = new Insets(0, 40, 40, 40); // Espaço antes do botão Entrar
         loginCard.add(forgotPanel, gbc);
 
         // 5. Botão LOGIN
@@ -172,7 +176,7 @@ public class TelaLogin extends JFrame {
         btnLogin.addActionListener(e -> acaoLogin());
         
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 20, 30);
+        gbc.insets = new Insets(0, 40, 30, 40);
         loginCard.add(btnLogin, gbc);
 
         // 6. Criar Conta
@@ -181,19 +185,19 @@ public class TelaLogin extends JFrame {
         
         JLabel lblNaoTem = new JLabel("Não tem conta?");
         lblNaoTem.setForeground(Color.GRAY);
-        lblNaoTem.setFont(new Font("Arial", Font.PLAIN, 13));
+        lblNaoTem.setFont(new Font("Arial", Font.PLAIN, 14));
         
         btnCadastrar = new JButton("Cadastre-se");
         styleLinkButton(btnCadastrar);
-        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 13));
-        btnCadastrar.setForeground(new Color(153, 50, 255)); // Destaque roxo
+        btnCadastrar.setFont(new Font("Arial", Font.BOLD, 14));
+        btnCadastrar.setForeground(new Color(153, 50, 255)); 
         btnCadastrar.addActionListener(e -> abrirCadastro());
 
         signupPanel.add(lblNaoTem);
         signupPanel.add(btnCadastrar);
 
         gbc.gridy++;
-        gbc.insets = new Insets(0, 30, 40, 30);
+        gbc.insets = new Insets(0, 40, 40, 40);
         loginCard.add(signupPanel, gbc);
 
         // Adiciona card ao centro
@@ -252,25 +256,17 @@ public class TelaLogin extends JFrame {
         int idClienteLogado = UsuarioDAO.autenticar(email, senha);
 
         if (idClienteLogado > 0) {
-            this.dispose(); 
-
-            // Verifica se o cliente já comprou
+            
+            // --- TRANSIÇÃO SUAVE (Substituindo o dispose seco) ---
+            
             boolean jaComprou = UsuarioDAO.clienteJaComprou(idClienteLogado);
 
             if (jaComprou) {
-                // Se já comprou -> Vai para o Painel Principal (Dashboard)
-                // OBS: No seu código original, quem já comprou ia para DashBoardClienteAntigo ou PainelClienteAntigo
-                // Ajustei para os novos nomes padronizados que criamos hoje:
-                
-                // Opção 1: Ir para o Painel Geral (Onde tem botão dashboard)
-                new PainelCliente(idClienteLogado).setVisible(true);
-                
-                // Ou Opção 2: Ir direto pro Dashboard (Descomente se preferir)
-                // new DashBoardCliente(idClienteLogado).setVisible(true);
-
+                // Vai para o Painel (que tem acesso ao Dashboard)
+                Transicao.trocar(this, new PainelCliente(idClienteLogado));
             } else {
-                // Se NÃO comprou -> Vai para Painel Geral (para ver o botão "Novo Pedido")
-                new PainelCliente(idClienteLogado).setVisible(true);
+                // Vai para o Painel (que tem acesso à Compra)
+                Transicao.trocar(this, new PainelCliente(idClienteLogado));
             }
 
         } else {
@@ -282,9 +278,8 @@ public class TelaLogin extends JFrame {
     }
 
     private void abrirCadastro() {
-        setVisible(false);
-        // Ajuste aqui se sua tela nova de cadastro chama "TelaCadastro" ou "TelaCadastroAntigo"
-        new TelaCadastro().setVisible(true); 
+        // --- TRANSIÇÃO SUAVE PARA CADASTRO ---
+        Transicao.trocar(this, new TelaCadastro());
     }
 
     public static void main(String[] args) {
