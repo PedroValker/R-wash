@@ -33,7 +33,6 @@ com\mycompany\rwash\views\DashBoardCliente.class
 com\mycompany\rwash\views\TelaCadastroEndereço$RoundedButton.class
 com\mycompany\rwash\views\PainelClienteNaoLogado$RoundedButton.class
 com\mycompany\rwash\views\TelaCadastro$GradientPanel.class
-com\mycompany\rwash\views\DashBoardCliente$2.class
 com\mycompany\rwash\views\DashBoardClienteAntigo.class
 com\mycompany\rwash\views\jLabelNomeCliente.class
 com\mycompany\rwash\views\TelaCadastroMaquinaAntigo$3.class

@@ -9,7 +9,9 @@ import com.mycompany.rwash.Model.Maquina;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
 
 /**
  *
@@ -30,7 +32,31 @@ public class MaquinaDAO {
             e.printStackTrace();
             return null;
         }
+    }   
+    public static LinkedHashMap<Integer, String> buscarMaquinasPorCliente(int idCliente) {
+
+        LinkedHashMap<Integer, String> maquinas = new LinkedHashMap<>();
+
+        String sql = "SELECT idMaquina, modeloMaquina FROM maquina WHERE Cliente_idCliente = ?";
+
+        try (Connection conexao = getConexao();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+
+            stmt.setInt(1, idCliente);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                maquinas.put(rs.getInt("idMaquina"), rs.getString("modeloMaquina"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Erro ao buscar máquinas: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return maquinas;
     }
+
     
      public static boolean salvar(Maquina obj) {
     boolean retorno = false;

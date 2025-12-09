@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.text.MaskFormatter;
 
 public class TelaCadastro extends JFrame {
 
@@ -85,8 +86,31 @@ public class TelaCadastro extends JFrame {
             @Override public void mouseEntered(MouseEvent e) { b.setForeground(Color.WHITE); }
             @Override public void mouseExited(MouseEvent e) { b.setForeground(new Color(200, 200, 255)); }
         });
-    }
+        
+    
 
+    }
+    private JFormattedTextField criarCampoCPF() {
+    try {
+        MaskFormatter cpfMask = new MaskFormatter("###.###.###-##");
+        cpfMask.setPlaceholderCharacter('_');
+
+        JFormattedTextField txt = new JFormattedTextField(cpfMask);
+        txt.setOpaque(false);
+        txt.setForeground(Color.WHITE);
+        txt.setFont(new Font("Arial", Font.PLAIN, 18));
+        txt.setCaretColor(Color.WHITE);
+        txt.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(153, 50, 255)),
+            BorderFactory.createEmptyBorder(2, 5, 2, 5)
+        ));
+
+        return txt;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new JFormattedTextField();
+    }
+}
     // ==========================================
     //            CONSTRUÇÃO DA TELA
     // ==========================================
@@ -144,10 +168,11 @@ public class TelaCadastro extends JFrame {
         formPanel.add(txtEmail, gbc);
 
         // CPF
+       // CPF com máscara
         gbc.gridy++;
         formPanel.add(criarLabel("CPF"), gbc);
         gbc.gridy++;
-        txtCPF = criarTextField();
+        txtCPF = criarCampoCPF();
         formPanel.add(txtCPF, gbc);
 
         // Senha
@@ -243,7 +268,8 @@ public class TelaCadastro extends JFrame {
         String nome = txtNome.getText().trim();
         String email = txtEmail.getText().trim();
         String senha = new String(txtSenha.getPassword()).trim();
-        String cpf = txtCPF.getText().trim();
+        String cpf = txtCPF.getText().replace(".", "").replace("-", "").trim();
+
 
         if (nome.isEmpty() || email.isEmpty() || senha.isEmpty() || cpf.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos.", "Atenção", JOptionPane.WARNING_MESSAGE);
