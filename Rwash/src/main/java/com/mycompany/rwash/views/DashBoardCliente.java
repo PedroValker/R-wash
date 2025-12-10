@@ -178,56 +178,57 @@ public class DashBoardCliente extends JFrame {
     }
 
     // SIMULANDO VALORES DE BD (ate integrar de verdade)
-    ArrayList<Double> valores = new ArrayList<>();
-    for (int i = 0; i < 10; i++) valores.add(Math.random() * 100);
+        ArrayList<Double> valores = new ArrayList<>();
+        for (int i = 0; i < 10; i++) valores.add(Math.random() * 100);
 
-    chartsContainer.add(criarGrafico("Turbidez", valores));
-    chartsContainer.add(criarGrafico("Energia", valores));
-    chartsContainer.add(new PainelEconomia(valores.stream().mapToDouble(a -> a).sum()));
-    chartsContainer.add(criarGrafico("Temperatura", valores));
+        chartsContainer.add(criarGrafico("Turbidez", valores));
+        chartsContainer.add(criarGrafico("Energia", valores));
+        chartsContainer.add(new PainelEconomia(valores.stream().mapToDouble(a -> a).sum()));
+        chartsContainer.add(criarGrafico("Temperatura", valores));
 
-    chartsContainer.revalidate();
-    chartsContainer.repaint();
-    }
-private JPanel criarGrafico(String titulo, ArrayList<Double> valores) {
+        chartsContainer.revalidate();
+        chartsContainer.repaint();
+        }
 
-    org.jfree.data.category.DefaultCategoryDataset dataset = new org.jfree.data.category.DefaultCategoryDataset();
+    private JPanel criarGrafico(String titulo, ArrayList<Double> valores) {
 
-    int dia = 1;
-    for (Double v : valores) {
-        dataset.addValue(v, titulo, "Dia " + dia++);
-    }
+        org.jfree.data.category.DefaultCategoryDataset dataset = new org.jfree.data.category.DefaultCategoryDataset();
 
-    org.jfree.chart.JFreeChart chart = org.jfree.chart.ChartFactory.createLineChart(
-            titulo + " - Máquina " + (comboMaquinas.getSelectedItem()),
-            "Dias",
-            titulo,
-            dataset,
-            org.jfree.chart.plot.PlotOrientation.VERTICAL,
-            false, true, false
-    );
+        int dia = 1;
+        for (Double v : valores) {
+            dataset.addValue(v, titulo, "Dia " + dia++);
+        }
 
-    chart.setBackgroundPaint(new Color(23, 21, 56));
-    chart.getTitle().setPaint(Color.WHITE);
+        org.jfree.chart.JFreeChart chart = org.jfree.chart.ChartFactory.createLineChart(
+                titulo + " - Máquina " + (comboMaquinas.getSelectedItem()),
+                "Dias",
+                titulo,
+                dataset,
+                org.jfree.chart.plot.PlotOrientation.VERTICAL,
+                false, true, false
+        );
 
-    org.jfree.chart.plot.CategoryPlot plot = chart.getCategoryPlot();
-    plot.setBackgroundPaint(new Color(60, 0, 120));
-    plot.setRangeGridlinePaint(Color.WHITE);
-    plot.setDomainGridlinePaint(Color.WHITE);
+        chart.setBackgroundPaint(new Color(23, 21, 56));
+        chart.getTitle().setPaint(Color.WHITE);
 
-    org.jfree.chart.ChartPanel chartPanel = new org.jfree.chart.ChartPanel(chart);
-    chartPanel.setOpaque(false);
-    chartPanel.setPreferredSize(new Dimension(300, 220));
+        org.jfree.chart.plot.CategoryPlot plot = chart.getCategoryPlot();
+        plot.setBackgroundPaint(new Color(60, 0, 120));
+        plot.setRangeGridlinePaint(Color.WHITE);
+        plot.setDomainGridlinePaint(Color.WHITE);
 
-    return chartPanel;
-}
+        org.jfree.chart.ChartPanel chartPanel = new org.jfree.chart.ChartPanel(chart);
+        chartPanel.setOpaque(false);
+        chartPanel.setPreferredSize(new Dimension(300, 220));
 
-
-    private void acaoVoltar() {
-        Transicao.trocar(this, new PainelCliente(idCliente));
+        return chartPanel;
     }
 
-    public static void main(String args[]) {
-        SwingUtilities.invokeLater(() -> new DashBoardCliente().setVisible(true));
+
+        private void acaoVoltar() {
+            Transicao.trocar(this, new PainelCliente(idCliente));
+        }
+
+        public static void main(String args[]) {
+            SwingUtilities.invokeLater(() -> new DashBoardCliente().setVisible(true));
+        }
     }
-}
